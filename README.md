@@ -68,6 +68,8 @@ cd PeluPrice-MVP
 
 ### 2. Development Setup (Recommended)
 Use our development helper script for quick setup:
+
+**For macOS/Linux:**
 ```bash
 # Make script executable
 chmod +x dev.sh
@@ -77,6 +79,30 @@ chmod +x dev.sh
 
 # Start development servers
 ./dev.sh start
+```
+
+**For Windows (PowerShell - Recommended):**
+```powershell
+# Setup development environment
+.\dev.ps1 setup
+
+# Start development servers
+.\dev.ps1 start
+
+# Or with Docker
+.\dev.ps1 start -Docker
+```
+
+**For Windows (Batch):**
+```cmd
+REM Setup development environment
+dev.bat setup
+
+REM Start development servers
+dev.bat start
+
+REM Or with Docker
+dev.bat start docker
 ```
 
 ### 3. Manual Setup
@@ -161,6 +187,88 @@ PeluPrice-MVP/
 ├── .env                   # Environment variables
 └── README.md
 ```
+
+## 💻 Windows Development Setup
+
+For Windows developers, we provide multiple options to simplify development:
+
+### 🚀 Quick Start (Easiest)
+For the simplest setup experience, run:
+```cmd
+start-windows.bat
+```
+This interactive script will:
+- Check and fix PowerShell execution policy
+- Install missing prerequisites (UV, Node.js, Docker)
+- Guide you through choosing the best development script
+- Set up your development environment
+
+### Quick Windows Setup
+Run our automated setup script to install all prerequisites:
+```powershell
+# Run the setup script (installs UV, checks Node.js, and Docker)
+.\setup-windows.ps1
+
+# Or install specific tools only
+.\setup-windows.ps1 -UV      # Install UV only
+.\setup-windows.ps1 -Node    # Check/install Node.js only
+.\setup-windows.ps1 -Docker  # Check/install Docker only
+```
+
+### Windows Prerequisites
+1. **Install uv**: `powershell -c "irm https://astral.sh/uv/install.ps1 | iex"`
+2. **Install Node.js 18+**: Download from [nodejs.org](https://nodejs.org)
+3. **Install Docker Desktop**: Download from [docker.com](https://docker.com)
+
+### Available Scripts
+
+#### PowerShell Script (`dev.ps1`) - **Recommended**
+```powershell
+# Setup development environment
+.\dev.ps1 setup
+
+# Start development servers (in background jobs)
+.\dev.ps1 start
+
+# Start with Docker Compose
+.\dev.ps1 start -Docker
+
+# Initialize database
+.\dev.ps1 init-db
+
+# Run tests
+.\dev.ps1 test
+
+# Show help
+.\dev.ps1 help
+```
+
+#### Batch Script (`dev.bat`)
+```cmd
+REM Setup development environment
+dev.bat setup
+
+REM Start development servers (opens separate windows)
+dev.bat start
+
+REM Start with Docker Compose
+dev.bat start docker
+
+REM Initialize database
+dev.bat init-db
+
+REM Run tests
+dev.bat test
+
+REM Show help
+dev.bat help
+```
+
+### Windows-Specific Notes
+- **PowerShell script** runs servers as background jobs with better process management
+- **Batch script** opens servers in separate Command Prompt windows
+- Use PowerShell for better development experience
+- Make sure PowerShell execution policy allows scripts: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
 
 ## 🏃‍♂️ Development
 
