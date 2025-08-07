@@ -1,0 +1,56 @@
+'use client';
+
+import { useState } from 'react';
+import { useTranslation } from '../i18n';
+import { config } from '../lib/config';
+
+export const VoiceTester = ({ voice }) => {
+  const [testing, setTesting] = useState(false);
+  const { t } = useTranslation();
+
+  const handleTest = async () => {
+    setTesting(true);
+    
+    // Simulate voice testing
+    setTimeout(() => {
+      setTesting(false);
+      alert(t('devices.voiceTestComplete'));
+    }, 2000);
+  };
+
+  const selectedVoiceData = config.voiceOptions.find(v => v.id === voice);
+
+  return (
+    <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <div className="text-2xl">🔊</div>
+          <div>
+            <div className="font-medium text-slate-800 dark:text-slate-200">
+              {selectedVoiceData?.name || voice}
+            </div>
+            <div className="text-sm text-slate-600 dark:text-slate-400">
+              {t('devices.testVoicePreview')}
+            </div>
+          </div>
+        </div>
+        
+        <button
+          type="button"
+          onClick={handleTest}
+          disabled={testing}
+          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-lg transition-all duration-200 text-sm font-medium"
+        >
+          {testing ? (
+            <div className="flex items-center space-x-2">
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              <span>{t('devices.testing')}</span>
+            </div>
+          ) : (
+            t('devices.testVoice')
+          )}
+        </button>
+      </div>
+    </div>
+  );
+};
