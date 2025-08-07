@@ -1,15 +1,6 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { AuthProvider } from '../../context/AuthContext';
+import { TranslationProvider } from '../../i18n';
 
 export const metadata = {
   title: "PeluPrice - Smart Device Monitoring",
@@ -19,11 +10,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="tr">
+      <body className="antialiased">
+        <TranslationProvider>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </TranslationProvider>
       </body>
     </html>
   );
