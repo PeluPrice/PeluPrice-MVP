@@ -1,0 +1,58 @@
+
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    env_file:
+      - .env
+    depends_on:
+      - mqtt
+      - db
+    
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    env_file:
+      - .env
+    depends_on:
+      - backend
+
+  mqtt:
+    image: eclipse-mosquitto:2.0
+    container_name: peluprice-mqtt
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mqtt/config:/mosquitto/config
+      - ./mqtt/data:/mosquitto/data
+      - ./mqtt/log:/mosquitto/log
+    restart: unless-stopped
+
+  db:
+    image: postgres:15
+    container_name: peluprice-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-peluprice}
+      POSTGRES_USER: ${POSTGRES_USER:-peluprice}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-peluprice123}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
