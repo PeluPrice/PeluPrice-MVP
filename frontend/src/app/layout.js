@@ -3,8 +3,9 @@ import { AuthProvider } from '../../context/AuthContext';
 import { TranslationProvider } from '../../i18n';
 
 export const metadata = {
-  title: "PlushCryptoAlarm",
-  description: "Smart crypto alarm system for your plush devices",
+  title: "PeluPrice - Smart Device Monitoring",
+  description: "Advanced IoT device monitoring and management platform",
+  metadataBase: new URL('https://peluprice.com'),
 };
 
 export default function RootLayout({ children }) {
