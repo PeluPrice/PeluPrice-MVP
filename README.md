@@ -101,6 +101,10 @@ dev.bat setup
 REM Start development servers
 dev.bat start
 
+REM Or use the simplified version (recommended)
+dev-simple.bat setup
+dev-simple.bat start
+
 REM Or with Docker
 dev.bat start docker
 ```
@@ -243,30 +247,38 @@ Run our automated setup script to install all prerequisites:
 .\dev.ps1 help
 ```
 
-#### Batch Script (`dev.bat`)
+#### Batch Script (`dev.bat` or `dev-simple.bat`)
 ```cmd
 REM Setup development environment
 dev.bat setup
+REM OR use simplified version (more reliable)
+dev-simple.bat setup
 
 REM Start development servers (opens separate windows)
 dev.bat start
+REM OR use simplified version
+dev-simple.bat start
 
 REM Start with Docker Compose
 dev.bat start docker
 
 REM Initialize database
 dev.bat init-db
+dev-simple.bat init-db
 
 REM Run tests
 dev.bat test
+dev-simple.bat test
 
 REM Show help
 dev.bat help
+dev-simple.bat help
 ```
 
 ### Windows-Specific Notes
 - **PowerShell script** runs servers as background jobs with better process management
-- **Batch script** opens servers in separate Command Prompt windows
+- **Batch script** opens servers in separate Command Prompt windows  
+- **dev-simple.bat** is a more reliable version if you encounter issues with dev.bat
 - Use PowerShell for better development experience
 - Make sure PowerShell execution policy allows scripts: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
 

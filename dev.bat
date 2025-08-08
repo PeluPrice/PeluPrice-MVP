@@ -3,7 +3,12 @@ REM PeluPrice Development Helper Script for Windows
 setlocal enabledelayedexpansion
 
 REM Project directories
-set "SCRIPT_DIR=%~dp0"
+set "SCR    # Wait and show status
+    timeout /t 3 /nobreak >nul
+    call :log_success "Backend running at: http://localhost:8000"
+    call :log_success "Frontend running at: http://localhost:3000"
+    call :log_info "Press Ctrl+C to stop this script (servers will continue running in separate windows)"
+    call :log_info "To stop servers, close the backend and frontend windows manually"R=%~dp0"
 set "PROJECT_ROOT=%SCRIPT_DIR%"
 set "BACKEND_DIR=%PROJECT_ROOT%backend"
 set "FRONTEND_DIR=%PROJECT_ROOT%frontend"
