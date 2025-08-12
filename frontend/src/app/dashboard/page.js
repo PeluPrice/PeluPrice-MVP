@@ -9,6 +9,7 @@ import { Navbar } from '../../../components/Navbar';
 import { DeviceCard } from '../../../components/DeviceCard';
 import { ActivationForm } from '../../../components/ActivationForm';
 import { DeviceForm } from '../../../components/DeviceForm';
+import { DeviceManagementGrid } from '../../../components/DeviceManagementGrid';
 
 export default function DashboardPage() {
   const [devices, setDevices] = useState([]);
@@ -76,7 +77,7 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
       <Navbar />
       
-      <main className="container mx-auto px-4 py-8">
+      <main className="w-full px-2 sm:px-4 lg:px-6 py-8">
         {error && (
           <div className="mb-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-6 py-4 rounded-xl shadow-sm">
             <div className="flex items-center">
@@ -105,58 +106,50 @@ export default function DashboardPage() {
             </div>
           </div>
         ) : devices.length === 1 ? (
-          // Single device - Show management interface directly
-          <div className="max-w-4xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
+          // Single device - Show management interface in grid cards
+          <div className="w-full max-w-none px-2 sm:px-4 lg:px-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
               <div>
-                <h1 className="text-3xl font-bold text-slate-900 dark:text-white">{t('navigation.deviceManagement')}</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">{t('navigation.deviceManagement')}</h1>
                 <p className="text-slate-600 dark:text-slate-300 mt-2">
                   {devices[0].name || `Device ${devices[0].deviceCode}`}
                 </p>
               </div>
               <button
                 onClick={() => setShowActivationForm(true)}
-                className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
+                className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 text-sm sm:text-base"
               >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 sm:w-5 h-4 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
                 {t('navigation.addDevice')}
               </button>
             </div>
 
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
-              <div className="p-8">
-                <DeviceForm
-                  device={devices[0]}
-                  onSave={handleDeviceUpdate}
-                  saving={false}
-                />
-              </div>
-            </div>
+            <DeviceManagementGrid device={devices[0]} onSave={handleDeviceUpdate} />
           </div>
         ) : (
           // Multiple devices - Show card grid
-          <div className="max-w-6xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
+          <div className="w-full max-w-none px-2 sm:px-4 lg:px-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
               <div>
-                <h1 className="text-3xl font-bold text-slate-900 dark:text-white">{t('navigation.myPlushies')}</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">{t('navigation.myPlushies')}</h1>
                 <p className="text-slate-600 dark:text-slate-300 mt-2">
                   {devices.length} aktif cihaz yönetiliyor
                 </p>
               </div>
               <button
                 onClick={() => setShowActivationForm(true)}
-                className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
+                className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 text-sm sm:text-base"
               >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 sm:w-5 h-4 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
                 {t('navigation.addDevice')}
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 lg:gap-6">
               {devices.map((device) => (
                 <DeviceCard
                   key={device.id}
