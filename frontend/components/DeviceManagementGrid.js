@@ -227,7 +227,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
         {/* Middle Column: Social Media + Device Status + Quick Actions */}
         <div className="lg:col-span-2 space-y-3 lg:space-y-4">
           {/* Social Media Integration Card */}
-          {/* <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 p-4 lg:p-5 hover:shadow-2xl transition-all duration-300">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 p-4 lg:p-5 hover:shadow-2xl transition-all duration-300">
             <div className="flex items-center mb-4">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl flex items-center justify-center text-white text-xl">
                 🐦
@@ -258,10 +258,10 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                   className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-800 dark:text-slate-200"
                   placeholder="https://twitter.com/username"
                 />
-              )} */}
+              )} 
 
               {/* Additional Social Features */}
-              {/* <div className="pt-2 border-t border-slate-200 dark:border-slate-600">
+               {/* <div className="pt-2 border-t border-slate-200 dark:border-slate-600">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-slate-700 dark:text-slate-300">Otomatik Paylaşım</span>
                   <input type="checkbox" className="w-4 h-4 text-blue-600 rounded" />
@@ -270,9 +270,9 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                   <span className="text-sm text-slate-700 dark:text-slate-300">Fiyat Etiketleme</span>
                   <input type="checkbox" className="w-4 h-4 text-blue-600 rounded" />
                 </div>
-              </div>
+              </div> */}
             </div>
-          </div> */}
+          </div> 
 
           {/* Device Status Card */}
           <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 p-4 lg:p-5 hover:shadow-2xl transition-all duration-300">
@@ -395,6 +395,8 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
               selectedCoin={formData.settings.coin}
               onCoinSelect={(coin) => updateSetting('coin', coin)}
             />
+
+            
             
             <ThresholdInputs
               lowerThreshold={formData.settings.lowerThreshold}
