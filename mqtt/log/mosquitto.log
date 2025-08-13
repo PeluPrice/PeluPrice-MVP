@@ -413,3 +413,4 @@
 1755106974: Sending SUBACK to peluprice-backend
 1755107025: Received DISCONNECT from peluprice-backend
 1755107025: Client peluprice-backend disconnected.
+1755107129: Saving in-memory database to /mosquitto/data//mosquitto.db.
