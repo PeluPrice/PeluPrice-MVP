@@ -68,6 +68,8 @@
     "uploadPhoto": "Fotoğraf Yükle",
     "uploadSound": "Ses Dosyası Yükle",
     "selectCoin": "Kripto Para Seçin",
+    "searchCoins": "Coin ara... (örn: BTC, ETH)",
+    "noCoinsFound": "Hiç coin bulunamadı",
     "saveDevice": "Cihazı Kaydet",
     "updateDevice": "Cihazı Güncelle",
     "editDevice": "Cihazı Düzenle",

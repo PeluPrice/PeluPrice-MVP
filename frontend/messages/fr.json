@@ -66,7 +66,10 @@
     "typeRemove": "supprimer",
     "deviceRemoved": "Appareil supprimé",
     "uploadPhoto": "Télécharger une photo",
-    "uploadSound": "Télécharger un fichier audio"
+    "uploadSound": "Télécharger un fichier audio",
+    "selectCoin": "Sélectionner une cryptomonnaie",
+    "searchCoins": "Rechercher des coins... (ex: BTC, ETH)",
+    "noCoinsFound": "Aucun coin trouvé"
   },
   "languages": {
     "tr": "Türkçe",
