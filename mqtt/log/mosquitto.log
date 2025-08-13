@@ -1,0 +1,415 @@
+1755096244: mosquitto version 2.0.22 starting
+1755096244: Config loaded from /mosquitto/config/mosquitto.conf.
+1755096244: Opening ipv4 listen socket on port 1883.
+1755096244: Opening ipv6 listen socket on port 1883.
+1755096244: Opening websockets listen socket on port 9001.
+1755096244: mosquitto version 2.0.22 running
+1755096259: New connection from 192.168.65.1:51521 on port 1883.
+1755096259: New client connected from 192.168.65.1:51521 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755096259: No will message specified.
+1755096259: Sending CONNACK to peluprice-backend (0, 0)
+1755096259: Received SUBSCRIBE from peluprice-backend
+1755096259: 	peluprice/devices/+/status (QoS 0)
+1755096259: Sending SUBACK to peluprice-backend
+1755096259: Received SUBSCRIBE from peluprice-backend
+1755096259: 	peluprice/devices/+/heartbeat (QoS 0)
+1755096259: Sending SUBACK to peluprice-backend
+1755096259: Received SUBSCRIBE from peluprice-backend
+1755096259: 	peluprice/devices/+/data (QoS 0)
+1755096259: Sending SUBACK to peluprice-backend
+1755096319: Received PINGREQ from peluprice-backend
+1755096319: Sending PINGRESP to peluprice-backend
+1755096379: Received PINGREQ from peluprice-backend
+1755096379: Sending PINGRESP to peluprice-backend
+1755096440: Received PINGREQ from peluprice-backend
+1755096440: Sending PINGRESP to peluprice-backend
+1755096500: Received PINGREQ from peluprice-backend
+1755096500: Sending PINGRESP to peluprice-backend
+1755096560: Received PINGREQ from peluprice-backend
+1755096560: Sending PINGRESP to peluprice-backend
+1755096620: Received PINGREQ from peluprice-backend
+1755096620: Sending PINGRESP to peluprice-backend
+1755096680: Received PINGREQ from peluprice-backend
+1755096680: Sending PINGRESP to peluprice-backend
+1755096741: Received PINGREQ from peluprice-backend
+1755096741: Sending PINGRESP to peluprice-backend
+1755096801: Received PINGREQ from peluprice-backend
+1755096801: Sending PINGRESP to peluprice-backend
+1755096861: Received PINGREQ from peluprice-backend
+1755096861: Sending PINGRESP to peluprice-backend
+1755096876: Received DISCONNECT from peluprice-backend
+1755096876: Client peluprice-backend disconnected.
+1755096878: New connection from 192.168.65.1:46650 on port 1883.
+1755096878: New client connected from 192.168.65.1:46650 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755096878: No will message specified.
+1755096878: Sending CONNACK to peluprice-backend (0, 0)
+1755096878: Received SUBSCRIBE from peluprice-backend
+1755096878: 	peluprice/devices/+/status (QoS 0)
+1755096878: Sending SUBACK to peluprice-backend
+1755096878: Received SUBSCRIBE from peluprice-backend
+1755096878: 	peluprice/devices/+/heartbeat (QoS 0)
+1755096878: Sending SUBACK to peluprice-backend
+1755096878: Received SUBSCRIBE from peluprice-backend
+1755096878: 	peluprice/devices/+/data (QoS 0)
+1755096878: Sending SUBACK to peluprice-backend
+1755096884: Received DISCONNECT from peluprice-backend
+1755096884: Client peluprice-backend disconnected.
+1755096884: New connection from 192.168.65.1:54240 on port 1883.
+1755096884: New client connected from 192.168.65.1:54240 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755096884: No will message specified.
+1755096884: Sending CONNACK to peluprice-backend (0, 0)
+1755096884: Received SUBSCRIBE from peluprice-backend
+1755096884: 	peluprice/devices/+/status (QoS 0)
+1755096884: Sending SUBACK to peluprice-backend
+1755096884: Received SUBSCRIBE from peluprice-backend
+1755096884: 	peluprice/devices/+/heartbeat (QoS 0)
+1755096884: Sending SUBACK to peluprice-backend
+1755096884: Received SUBSCRIBE from peluprice-backend
+1755096884: 	peluprice/devices/+/data (QoS 0)
+1755096884: Sending SUBACK to peluprice-backend
+1755096945: Received PINGREQ from peluprice-backend
+1755096945: Sending PINGRESP to peluprice-backend
+1755097005: Received PINGREQ from peluprice-backend
+1755097005: Sending PINGRESP to peluprice-backend
+1755097021: Received DISCONNECT from peluprice-backend
+1755097021: Client peluprice-backend disconnected.
+1755097021: New connection from 192.168.65.1:59098 on port 1883.
+1755097021: New client connected from 192.168.65.1:59098 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097021: No will message specified.
+1755097021: Sending CONNACK to peluprice-backend (0, 0)
+1755097021: Received SUBSCRIBE from peluprice-backend
+1755097021: 	peluprice/devices/+/status (QoS 0)
+1755097021: Sending SUBACK to peluprice-backend
+1755097021: Received SUBSCRIBE from peluprice-backend
+1755097021: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097021: Sending SUBACK to peluprice-backend
+1755097021: Received SUBSCRIBE from peluprice-backend
+1755097021: 	peluprice/devices/+/data (QoS 0)
+1755097021: Sending SUBACK to peluprice-backend
+1755097082: Received PINGREQ from peluprice-backend
+1755097082: Sending PINGRESP to peluprice-backend
+1755097135: Received DISCONNECT from peluprice-backend
+1755097135: Client peluprice-backend disconnected.
+1755097135: New connection from 192.168.65.1:17973 on port 1883.
+1755097135: New client connected from 192.168.65.1:17973 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097135: No will message specified.
+1755097135: Sending CONNACK to peluprice-backend (0, 0)
+1755097135: Received SUBSCRIBE from peluprice-backend
+1755097135: 	peluprice/devices/+/status (QoS 0)
+1755097135: Sending SUBACK to peluprice-backend
+1755097135: Received SUBSCRIBE from peluprice-backend
+1755097135: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097135: Sending SUBACK to peluprice-backend
+1755097135: Received SUBSCRIBE from peluprice-backend
+1755097135: 	peluprice/devices/+/data (QoS 0)
+1755097135: Sending SUBACK to peluprice-backend
+1755097141: Received DISCONNECT from peluprice-backend
+1755097141: Client peluprice-backend disconnected.
+1755097142: New connection from 192.168.65.1:64486 on port 1883.
+1755097142: New client connected from 192.168.65.1:64486 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097142: No will message specified.
+1755097142: Sending CONNACK to peluprice-backend (0, 0)
+1755097142: Received SUBSCRIBE from peluprice-backend
+1755097142: 	peluprice/devices/+/status (QoS 0)
+1755097142: Sending SUBACK to peluprice-backend
+1755097142: Received SUBSCRIBE from peluprice-backend
+1755097142: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097142: Sending SUBACK to peluprice-backend
+1755097142: Received SUBSCRIBE from peluprice-backend
+1755097142: 	peluprice/devices/+/data (QoS 0)
+1755097142: Sending SUBACK to peluprice-backend
+1755097149: Received DISCONNECT from peluprice-backend
+1755097149: Client peluprice-backend disconnected.
+1755097150: New connection from 192.168.65.1:36484 on port 1883.
+1755097150: New client connected from 192.168.65.1:36484 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097150: No will message specified.
+1755097150: Sending CONNACK to peluprice-backend (0, 0)
+1755097150: Received SUBSCRIBE from peluprice-backend
+1755097150: 	peluprice/devices/+/status (QoS 0)
+1755097150: Sending SUBACK to peluprice-backend
+1755097150: Received SUBSCRIBE from peluprice-backend
+1755097150: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097150: Sending SUBACK to peluprice-backend
+1755097150: Received SUBSCRIBE from peluprice-backend
+1755097150: 	peluprice/devices/+/data (QoS 0)
+1755097150: Sending SUBACK to peluprice-backend
+1755097159: Received DISCONNECT from peluprice-backend
+1755097159: Client peluprice-backend disconnected.
+1755097159: New connection from 192.168.65.1:50124 on port 1883.
+1755097159: New client connected from 192.168.65.1:50124 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097159: No will message specified.
+1755097159: Sending CONNACK to peluprice-backend (0, 0)
+1755097159: Received SUBSCRIBE from peluprice-backend
+1755097159: 	peluprice/devices/+/status (QoS 0)
+1755097159: Sending SUBACK to peluprice-backend
+1755097159: Received SUBSCRIBE from peluprice-backend
+1755097159: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097159: Sending SUBACK to peluprice-backend
+1755097159: Received SUBSCRIBE from peluprice-backend
+1755097159: 	peluprice/devices/+/data (QoS 0)
+1755097159: Sending SUBACK to peluprice-backend
+1755097167: Received DISCONNECT from peluprice-backend
+1755097167: Client peluprice-backend disconnected.
+1755097168: New connection from 192.168.65.1:41742 on port 1883.
+1755097168: New client connected from 192.168.65.1:41742 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097168: No will message specified.
+1755097168: Sending CONNACK to peluprice-backend (0, 0)
+1755097168: Received SUBSCRIBE from peluprice-backend
+1755097168: 	peluprice/devices/+/status (QoS 0)
+1755097168: Sending SUBACK to peluprice-backend
+1755097168: Received SUBSCRIBE from peluprice-backend
+1755097168: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097168: Sending SUBACK to peluprice-backend
+1755097168: Received SUBSCRIBE from peluprice-backend
+1755097168: 	peluprice/devices/+/data (QoS 0)
+1755097168: Sending SUBACK to peluprice-backend
+1755097179: Received DISCONNECT from peluprice-backend
+1755097179: Client peluprice-backend disconnected.
+1755097179: New connection from 192.168.65.1:55864 on port 1883.
+1755097179: New client connected from 192.168.65.1:55864 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097179: No will message specified.
+1755097179: Sending CONNACK to peluprice-backend (0, 0)
+1755097179: Received SUBSCRIBE from peluprice-backend
+1755097179: 	peluprice/devices/+/status (QoS 0)
+1755097179: Sending SUBACK to peluprice-backend
+1755097179: Received SUBSCRIBE from peluprice-backend
+1755097179: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097179: Sending SUBACK to peluprice-backend
+1755097179: Received SUBSCRIBE from peluprice-backend
+1755097179: 	peluprice/devices/+/data (QoS 0)
+1755097179: Sending SUBACK to peluprice-backend
+1755097203: Received DISCONNECT from peluprice-backend
+1755097203: Client peluprice-backend disconnected.
+1755097204: New connection from 192.168.65.1:39753 on port 1883.
+1755097204: New client connected from 192.168.65.1:39753 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097204: No will message specified.
+1755097204: Sending CONNACK to peluprice-backend (0, 0)
+1755097204: Received SUBSCRIBE from peluprice-backend
+1755097204: 	peluprice/devices/+/status (QoS 0)
+1755097204: Sending SUBACK to peluprice-backend
+1755097204: Received SUBSCRIBE from peluprice-backend
+1755097204: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097204: Sending SUBACK to peluprice-backend
+1755097204: Received SUBSCRIBE from peluprice-backend
+1755097204: 	peluprice/devices/+/data (QoS 0)
+1755097204: Sending SUBACK to peluprice-backend
+1755097215: Received DISCONNECT from peluprice-backend
+1755097215: Client peluprice-backend disconnected.
+1755097215: New connection from 192.168.65.1:50160 on port 1883.
+1755097215: New client connected from 192.168.65.1:50160 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097215: No will message specified.
+1755097215: Sending CONNACK to peluprice-backend (0, 0)
+1755097215: Received SUBSCRIBE from peluprice-backend
+1755097215: 	peluprice/devices/+/status (QoS 0)
+1755097215: Sending SUBACK to peluprice-backend
+1755097215: Received SUBSCRIBE from peluprice-backend
+1755097215: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097215: Sending SUBACK to peluprice-backend
+1755097215: Received SUBSCRIBE from peluprice-backend
+1755097215: 	peluprice/devices/+/data (QoS 0)
+1755097215: Sending SUBACK to peluprice-backend
+1755097225: Received DISCONNECT from peluprice-backend
+1755097225: Client peluprice-backend disconnected.
+1755097226: New connection from 192.168.65.1:33467 on port 1883.
+1755097226: New client connected from 192.168.65.1:33467 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097226: No will message specified.
+1755097226: Sending CONNACK to peluprice-backend (0, 0)
+1755097226: Received SUBSCRIBE from peluprice-backend
+1755097226: 	peluprice/devices/+/status (QoS 0)
+1755097226: Sending SUBACK to peluprice-backend
+1755097226: Received SUBSCRIBE from peluprice-backend
+1755097226: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097226: Sending SUBACK to peluprice-backend
+1755097226: Received SUBSCRIBE from peluprice-backend
+1755097226: 	peluprice/devices/+/data (QoS 0)
+1755097226: Sending SUBACK to peluprice-backend
+1755097245: Received DISCONNECT from peluprice-backend
+1755097245: Client peluprice-backend disconnected.
+1755097245: New connection from 192.168.65.1:29967 on port 1883.
+1755097245: New client connected from 192.168.65.1:29967 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097245: No will message specified.
+1755097245: Sending CONNACK to peluprice-backend (0, 0)
+1755097246: Received SUBSCRIBE from peluprice-backend
+1755097246: 	peluprice/devices/+/status (QoS 0)
+1755097246: Sending SUBACK to peluprice-backend
+1755097246: Received SUBSCRIBE from peluprice-backend
+1755097246: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097246: Sending SUBACK to peluprice-backend
+1755097246: Received SUBSCRIBE from peluprice-backend
+1755097246: 	peluprice/devices/+/data (QoS 0)
+1755097246: Sending SUBACK to peluprice-backend
+1755097255: Received DISCONNECT from peluprice-backend
+1755097255: Client peluprice-backend disconnected.
+1755097255: New connection from 192.168.65.1:56382 on port 1883.
+1755097255: New client connected from 192.168.65.1:56382 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097255: No will message specified.
+1755097255: Sending CONNACK to peluprice-backend (0, 0)
+1755097255: Received SUBSCRIBE from peluprice-backend
+1755097255: 	peluprice/devices/+/status (QoS 0)
+1755097255: Sending SUBACK to peluprice-backend
+1755097255: Received SUBSCRIBE from peluprice-backend
+1755097255: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097255: Sending SUBACK to peluprice-backend
+1755097255: Received SUBSCRIBE from peluprice-backend
+1755097255: 	peluprice/devices/+/data (QoS 0)
+1755097255: Sending SUBACK to peluprice-backend
+1755097268: Received DISCONNECT from peluprice-backend
+1755097268: Client peluprice-backend disconnected.
+1755097293: New connection from 192.168.65.1:57374 on port 1883.
+1755097293: New client connected from 192.168.65.1:57374 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097293: No will message specified.
+1755097293: Sending CONNACK to peluprice-backend (0, 0)
+1755097293: Received SUBSCRIBE from peluprice-backend
+1755097293: 	peluprice/devices/+/status (QoS 0)
+1755097293: Sending SUBACK to peluprice-backend
+1755097293: Received SUBSCRIBE from peluprice-backend
+1755097293: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097293: Sending SUBACK to peluprice-backend
+1755097293: Received SUBSCRIBE from peluprice-backend
+1755097293: 	peluprice/devices/+/data (QoS 0)
+1755097293: Sending SUBACK to peluprice-backend
+1755097302: Received DISCONNECT from peluprice-backend
+1755097302: Client peluprice-backend disconnected.
+1755097302: New connection from 192.168.65.1:23033 on port 1883.
+1755097302: New client connected from 192.168.65.1:23033 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097302: No will message specified.
+1755097302: Sending CONNACK to peluprice-backend (0, 0)
+1755097302: Received SUBSCRIBE from peluprice-backend
+1755097302: 	peluprice/devices/+/status (QoS 0)
+1755097302: Sending SUBACK to peluprice-backend
+1755097302: Received SUBSCRIBE from peluprice-backend
+1755097302: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097302: Sending SUBACK to peluprice-backend
+1755097302: Received SUBSCRIBE from peluprice-backend
+1755097302: 	peluprice/devices/+/data (QoS 0)
+1755097302: Sending SUBACK to peluprice-backend
+1755097320: Received DISCONNECT from peluprice-backend
+1755097320: Client peluprice-backend disconnected.
+1755097321: New connection from 192.168.65.1:32381 on port 1883.
+1755097321: New client connected from 192.168.65.1:32381 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097321: No will message specified.
+1755097321: Sending CONNACK to peluprice-backend (0, 0)
+1755097321: Received SUBSCRIBE from peluprice-backend
+1755097321: 	peluprice/devices/+/status (QoS 0)
+1755097321: Sending SUBACK to peluprice-backend
+1755097321: Received SUBSCRIBE from peluprice-backend
+1755097321: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097321: Sending SUBACK to peluprice-backend
+1755097321: Received SUBSCRIBE from peluprice-backend
+1755097321: 	peluprice/devices/+/data (QoS 0)
+1755097321: Sending SUBACK to peluprice-backend
+1755097340: Received DISCONNECT from peluprice-backend
+1755097340: Client peluprice-backend disconnected.
+1755097340: New connection from 192.168.65.1:64092 on port 1883.
+1755097340: New client connected from 192.168.65.1:64092 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097340: No will message specified.
+1755097340: Sending CONNACK to peluprice-backend (0, 0)
+1755097340: Received SUBSCRIBE from peluprice-backend
+1755097340: 	peluprice/devices/+/status (QoS 0)
+1755097340: Sending SUBACK to peluprice-backend
+1755097340: Received SUBSCRIBE from peluprice-backend
+1755097340: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097340: Sending SUBACK to peluprice-backend
+1755097340: Received SUBSCRIBE from peluprice-backend
+1755097340: 	peluprice/devices/+/data (QoS 0)
+1755097340: Sending SUBACK to peluprice-backend
+1755097384: Received DISCONNECT from peluprice-backend
+1755097384: Client peluprice-backend disconnected.
+1755097384: New connection from 192.168.65.1:58319 on port 1883.
+1755097384: New client connected from 192.168.65.1:58319 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097384: No will message specified.
+1755097384: Sending CONNACK to peluprice-backend (0, 0)
+1755097384: Received SUBSCRIBE from peluprice-backend
+1755097384: 	peluprice/devices/+/status (QoS 0)
+1755097384: Sending SUBACK to peluprice-backend
+1755097384: Received SUBSCRIBE from peluprice-backend
+1755097384: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097384: Sending SUBACK to peluprice-backend
+1755097384: Received SUBSCRIBE from peluprice-backend
+1755097384: 	peluprice/devices/+/data (QoS 0)
+1755097384: Sending SUBACK to peluprice-backend
+1755097444: Received PINGREQ from peluprice-backend
+1755097444: Sending PINGRESP to peluprice-backend
+1755097505: Received PINGREQ from peluprice-backend
+1755097505: Sending PINGRESP to peluprice-backend
+1755097519: Received DISCONNECT from peluprice-backend
+1755097519: Client peluprice-backend disconnected.
+1755097519: New connection from 192.168.65.1:51625 on port 1883.
+1755097519: New client connected from 192.168.65.1:51625 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755097519: No will message specified.
+1755097519: Sending CONNACK to peluprice-backend (0, 0)
+1755097519: Received SUBSCRIBE from peluprice-backend
+1755097519: 	peluprice/devices/+/status (QoS 0)
+1755097519: Sending SUBACK to peluprice-backend
+1755097519: Received SUBSCRIBE from peluprice-backend
+1755097519: 	peluprice/devices/+/heartbeat (QoS 0)
+1755097519: Sending SUBACK to peluprice-backend
+1755097519: Received SUBSCRIBE from peluprice-backend
+1755097519: 	peluprice/devices/+/data (QoS 0)
+1755097519: Sending SUBACK to peluprice-backend
+1755097579: Received PINGREQ from peluprice-backend
+1755097579: Sending PINGRESP to peluprice-backend
+1755097640: Received PINGREQ from peluprice-backend
+1755097640: Sending PINGRESP to peluprice-backend
+1755097644: Received DISCONNECT from peluprice-backend
+1755097644: Client peluprice-backend disconnected.
+1755098044: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1755099845: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1755101646: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1755103447: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1755105248: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1755106632: New connection from 192.168.65.1:26778 on port 1883.
+1755106632: New client connected from 192.168.65.1:26778 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755106632: No will message specified.
+1755106632: Sending CONNACK to peluprice-backend (0, 0)
+1755106632: Received SUBSCRIBE from peluprice-backend
+1755106632: 	peluprice/devices/+/status (QoS 0)
+1755106632: Sending SUBACK to peluprice-backend
+1755106632: Received SUBSCRIBE from peluprice-backend
+1755106632: 	peluprice/devices/+/heartbeat (QoS 0)
+1755106632: Sending SUBACK to peluprice-backend
+1755106632: Received SUBSCRIBE from peluprice-backend
+1755106632: 	peluprice/devices/+/data (QoS 0)
+1755106632: Sending SUBACK to peluprice-backend
+1755106692: Received PINGREQ from peluprice-backend
+1755106692: Sending PINGRESP to peluprice-backend
+1755106753: Received PINGREQ from peluprice-backend
+1755106753: Sending PINGRESP to peluprice-backend
+1755106758: Received DISCONNECT from peluprice-backend
+1755106758: Client peluprice-backend disconnected.
+1755106759: New connection from 192.168.65.1:61480 on port 1883.
+1755106759: New client connected from 192.168.65.1:61480 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755106759: No will message specified.
+1755106759: Sending CONNACK to peluprice-backend (0, 0)
+1755106759: Received SUBSCRIBE from peluprice-backend
+1755106759: 	peluprice/devices/+/status (QoS 0)
+1755106759: Sending SUBACK to peluprice-backend
+1755106759: Received SUBSCRIBE from peluprice-backend
+1755106759: 	peluprice/devices/+/heartbeat (QoS 0)
+1755106759: Sending SUBACK to peluprice-backend
+1755106759: Received SUBSCRIBE from peluprice-backend
+1755106759: 	peluprice/devices/+/data (QoS 0)
+1755106759: Sending SUBACK to peluprice-backend
+1755106819: Received PINGREQ from peluprice-backend
+1755106819: Sending PINGRESP to peluprice-backend
+1755106879: Received PINGREQ from peluprice-backend
+1755106879: Sending PINGRESP to peluprice-backend
+1755106939: Received PINGREQ from peluprice-backend
+1755106939: Sending PINGRESP to peluprice-backend
+1755106961: Received DISCONNECT from peluprice-backend
+1755106961: Client peluprice-backend disconnected.
+1755106974: New connection from 192.168.65.1:34362 on port 1883.
+1755106974: New client connected from 192.168.65.1:34362 as peluprice-backend (p2, c1, k60, u'peluprice').
+1755106974: No will message specified.
+1755106974: Sending CONNACK to peluprice-backend (0, 0)
+1755106974: Received SUBSCRIBE from peluprice-backend
+1755106974: 	peluprice/devices/+/status (QoS 0)
+1755106974: Sending SUBACK to peluprice-backend
+1755106974: Received SUBSCRIBE from peluprice-backend
+1755106974: 	peluprice/devices/+/heartbeat (QoS 0)
+1755106974: Sending SUBACK to peluprice-backend
+1755106974: Received SUBSCRIBE from peluprice-backend
+1755106974: 	peluprice/devices/+/data (QoS 0)
+1755106974: Sending SUBACK to peluprice-backend
+1755107025: Received DISCONNECT from peluprice-backend
+1755107025: Client peluprice-backend disconnected.

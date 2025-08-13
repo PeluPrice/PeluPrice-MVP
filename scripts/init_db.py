@@ -13,8 +13,8 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent / "backend"))
 
 from sqlalchemy import create_engine, text
-from backend.app.models.user import Base
-from backend.app.models.device import Device  # Import to register the model
+from app.models.user import Base
+from app.models.device import Device  # Import to register the model
 
 def create_database():
     """Create database and all tables"""
