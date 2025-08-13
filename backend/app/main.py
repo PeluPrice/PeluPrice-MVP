@@ -2,8 +2,9 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.utils import get_openapi
 from dotenv import load_dotenv
-from .api import users, devices
+from .api import users, devices, auth
 from .ws import websocket
 from .services.mqtt_service import mqtt_service
 
@@ -15,7 +16,13 @@ app = FastAPI(
     description="IoT Device Management Platform API",
     version="1.0.0",
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
+    openapi_tags=[
+        {"name": "auth", "description": "Authentication operations"},
+        {"name": "users", "description": "User management operations"},
+        {"name": "devices", "description": "Device management operations"},
+        {"name": "websockets", "description": "WebSocket connections"},
+    ]
 )
 
 # CORS middleware for frontend
@@ -32,9 +39,36 @@ app.add_middleware(
 )
 
 # Include routers
+app.include_router(auth.router, prefix=f"/api/{os.getenv('API_VERSION', 'v1')}", tags=["auth"])
 app.include_router(users.router, prefix=f"/api/{os.getenv('API_VERSION', 'v1')}", tags=["users"])
 app.include_router(devices.router, prefix=f"/api/{os.getenv('API_VERSION', 'v1')}", tags=["devices"])
 app.include_router(websocket.router, tags=["websockets"])
+
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    
+    openapi_schema = get_openapi(
+        title="PeluPrice API",
+        version="1.0.0",
+        description="IoT Device Management Platform API with JWT Authentication",
+        routes=app.routes,
+    )
+    
+    # Add security scheme for JWT
+    openapi_schema["components"]["securitySchemes"] = {
+        "bearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT",
+            "description": "Enter JWT token obtained from /api/v1/auth/token"
+        }
+    }
+    
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+app.openapi = custom_openapi
 
 @app.get("/")
 def read_root():

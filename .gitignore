@@ -1,2 +1,5 @@
 .vercel
 .env
+
+mqtt/data/mosquitto.db
+mqtt/log/mosquitto.log

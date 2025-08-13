@@ -14,7 +14,7 @@ SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-jwt-secret-key-change-this-in-pro
 ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("JWT_EXPIRE_MINUTES", "30"))
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/auth/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"api/{os.getenv('API_VERSION', 'v1')}/auth/token")
 
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
     """Create a JWT access token"""
