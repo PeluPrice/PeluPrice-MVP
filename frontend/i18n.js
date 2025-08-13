@@ -5,7 +5,7 @@ import { useState, useEffect, createContext, useContext } from 'react';
 const locales = ['tr', 'en', 'de', 'fr'];
 
 // Create a context for translations
-const TranslationContext = createContext();
+const TranslationContext = createContext(null);
 
 export const useTranslation = () => {
   const context = useContext(TranslationContext);
@@ -57,8 +57,12 @@ export const TranslationProvider = ({ children }) => {
       } catch (error) {
         console.error('Failed to load translations:', error);
         // Fallback to Turkish
-        const msgs = await import('./messages/tr.json');
-        setTranslations(msgs.default);
+        try {
+          const msgs = await import('./messages/tr.json');
+          setTranslations(msgs.default);
+        } catch (fallbackError) {
+          console.error('Failed to load fallback translations:', fallbackError);
+        }
       }
     };
     

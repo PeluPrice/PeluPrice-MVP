@@ -43,5 +43,4 @@ class Device(DeviceBase):
     battery_level: Optional[int] = None
 
     class Config:
-        orm_mode = True
         from_attributes = True
