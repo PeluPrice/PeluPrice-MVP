@@ -1,18 +1,29 @@
 'use client';
 
-import { useState, useEffect, createContext, useContext } from 'react';
+import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 
-const locales = ['tr', 'en', 'de', 'fr'];
+const locales = ['tr', 'en', 'de', 'fr'] as const;
+
+// Define types for the translation context
+interface TranslationContextType {
+  t: (key: string) => string;
+  locale: string;
+  changeLanguage: (locale: string) => void;
+}
 
 // Create a context for translations
-const TranslationContext = createContext(null);
+const TranslationContext = createContext<TranslationContextType>({
+  t: (key: string) => key,
+  locale: 'tr',
+  changeLanguage: () => {}
+});
 
 export const useTranslation = () => {
   const context = useContext(TranslationContext);
   if (!context) {
     // Fallback if not using provider
     return {
-      t: (key) => key,
+      t: (key: string) => key,
       locale: 'tr',
       changeLanguage: () => {}
     };
@@ -20,15 +31,19 @@ export const useTranslation = () => {
   return context;
 };
 
-export const TranslationProvider = ({ children }) => {
-  const [locale, setCurrentLocale] = useState('tr');
-  const [translations, setTranslations] = useState({});
+interface TranslationProviderProps {
+  children: ReactNode;
+}
+
+export const TranslationProvider = ({ children }: TranslationProviderProps) => {
+  const [locale, setCurrentLocale] = useState<string>('tr');
+  const [translations, setTranslations] = useState<any>({});
 
   // Initialize locale from localStorage
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('locale');
-      if (stored && locales.includes(stored)) {
+      if (stored && (locales as readonly string[]).includes(stored)) {
         setCurrentLocale(stored);
       }
     }
@@ -57,29 +72,25 @@ export const TranslationProvider = ({ children }) => {
       } catch (error) {
         console.error('Failed to load translations:', error);
         // Fallback to Turkish
-        try {
-          const msgs = await import('./messages/tr.json');
-          setTranslations(msgs.default);
-        } catch (fallbackError) {
-          console.error('Failed to load fallback translations:', fallbackError);
-        }
+        const msgs = await import('./messages/tr.json');
+        setTranslations(msgs.default);
       }
     };
     
     loadMessages();
   }, [locale]);
 
-  const t = (key) => {
+  const t = (key: string): string => {
     const keys = key.split('.');
-    let value = translations;
+    let value: any = translations;
     for (const k of keys) {
       value = value?.[k];
     }
     return value || key;
   };
 
-  const changeLanguage = (newLocale) => {
-    if (locales.includes(newLocale)) {
+  const changeLanguage = (newLocale: string) => {
+    if ((locales as readonly string[]).includes(newLocale)) {
       setCurrentLocale(newLocale);
       if (typeof window !== 'undefined') {
         localStorage.setItem('locale', newLocale);
@@ -100,8 +111,8 @@ export const TranslationProvider = ({ children }) => {
   );
 };
 
-export const isValidLocale = (locale) => {
-  return locales.includes(locale);
+export const isValidLocale = (locale: string): boolean => {
+  return (locales as readonly string[]).includes(locale);
 };
 
 export { locales };
