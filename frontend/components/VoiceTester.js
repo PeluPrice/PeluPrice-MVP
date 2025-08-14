@@ -11,11 +11,48 @@ export const VoiceTester = ({ voice }) => {
   const handleTest = async () => {
     setTesting(true);
     
-    // Simulate voice testing
-    setTimeout(() => {
+    try {
+      // Get the voice data to determine which audio file to play
+      const selectedVoiceData = config.voiceOptions.find(v => v.id === voice);
+      let audioFile = '';
+      
+      // Map voice to audio file
+      if (selectedVoiceData?.name === 'Alex') {
+        audioFile = '/alex.mp3';
+      } else if (selectedVoiceData?.name === 'Emma') {
+        audioFile = '/emma.mp3';
+      }
+      
+      if (audioFile) {
+        // Create and play audio
+        const audio = new Audio(audioFile);
+        
+        // Handle audio events
+        audio.onloadeddata = () => {
+          console.log('Audio loaded successfully');
+        };
+        
+        audio.onerror = (error) => {
+          console.error('Audio load error:', error);
+          setTesting(false);
+        };
+        
+        audio.onended = () => {
+          setTesting(false);
+        };
+        
+        // Play the audio
+        await audio.play();
+      } else {
+        // Fallback for unknown voices
+        setTimeout(() => {
+          setTesting(false);
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('Error playing audio:', error);
       setTesting(false);
-      alert(t('devices.voiceTestComplete'));
-    }, 2000);
+    }
   };
 
   const selectedVoiceData = config.voiceOptions.find(v => v.id === voice);

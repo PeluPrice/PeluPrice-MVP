@@ -14,10 +14,10 @@ export const metadata = {
     siteName: 'PeluPrice',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/peluprice-bear.png',
         width: 1200,
         height: 630,
-        alt: 'PeluPrice Smart Plush Toys',
+        alt: 'PeluPrice Smart Plush Bear - Crypto Tracking Toy',
       },
     ],
     type: 'website',
@@ -26,7 +26,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: "PeluPrice - World's Smartest Crypto Plush Toys",
     description: "Track the crypto market with adorable plush toys!",
-    images: ['/twitter-image.jpg'],
+    images: ['/peluprice-bear.jpg'],
   },
   robots: {
     index: true,

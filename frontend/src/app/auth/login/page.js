@@ -69,7 +69,7 @@ export default function LoginPage() {
             </div>
             
             <p className="mt-3 text-sm text-slate-600 dark:text-slate-400 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 border border-blue-200 dark:border-blue-800">
-              <span className="font-medium">Demo:</span> {t('common.email')}: admin | {t('common.password')}: admin
+              <span className="font-medium">Demo:</span> {t('common.email')}: demo@demo.com | {t('common.password')}: demo1234
             </p>
           </div>
           {error && (
