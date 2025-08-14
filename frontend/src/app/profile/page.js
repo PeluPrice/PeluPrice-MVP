@@ -4,17 +4,32 @@ import { useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import { useTranslation } from '../../../i18n';
 import { Navbar } from '../../../components/Navbar';
+import { useEffect } from 'react';
+import { updateProfile } from '../../../lib/api';
 
 export default function ProfilePage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading, updateUser } = useAuth();
   const { t } = useTranslation();
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [formData, setFormData] = useState({
-    firstName: user?.firstName || '',
-    lastName: user?.lastName || '',
-    phoneNumber: user?.phoneNumber || ''
+    firstName: '',
+    lastName: '',
+    phoneNumber: ''
   });
+
+  // User bilgileri yüklendiğinde form data'yı güncelle
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        firstName: user.firstName || '',
+        lastName: user.lastName || '',
+        phoneNumber: user.phoneNumber || ''
+      });
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     setFormData({
@@ -25,19 +40,37 @@ export default function ProfilePage() {
 
   const handleSave = async () => {
     setSaving(true);
-    // In demo mode, just update local state
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
-    setEditing(false);
-    setSaving(false);
-    // In real app, would call updateProfile API
+    setError('');
+    setSuccess('');
+    
+    try {
+      const response = await updateProfile(formData);
+      setSuccess('Profil başarıyla güncellendi!');
+      setEditing(false);
+      
+      // AuthContext'teki user'ı güncelle
+      updateUser(response.data);
+      
+      // Success mesajını 3 saniye sonra gizle
+      setTimeout(() => {
+        setSuccess('');
+      }, 3000);
+      
+    } catch (err) {
+      setError(err.message || 'Profil güncellenirken hata oluştu');
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleCancel = () => {
-    setFormData({
-      firstName: user?.firstName || '',
-      lastName: user?.lastName || '',
-      phoneNumber: user?.phoneNumber || ''
-    });
+    if (user) {
+      setFormData({
+        firstName: user.firstName || '',
+        lastName: user.lastName || '',
+        phoneNumber: user.phoneNumber || ''
+      });
+    }
     setEditing(false);
   };
 
@@ -51,20 +84,51 @@ export default function ProfilePage() {
         <div className="absolute top-3/4 -right-20 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float" style={{animationDelay: '2s'}}></div>
       </div>
       
-      <main className="container mx-auto px-4 py-8 relative z-10">
-        <div className="max-w-2xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-8 animate-fade-in">
-            <div className="mx-auto w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 animate-bounce-in">
-              <span className="text-4xl">👤</span>
-            </div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-              {t('profile.editProfile')}
-            </h1>
-            <p className="text-slate-600 dark:text-slate-400">
-              Kişisel bilgilerinizi güncelleyin
-            </p>
+      {authLoading ? (
+        <div className="container mx-auto px-4 py-8 relative z-10">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-slate-600 dark:text-slate-400">Profil yükleniyor...</p>
           </div>
+        </div>
+      ) : (
+        <main className="container mx-auto px-4 py-8 relative z-10">
+          <div className="max-w-2xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-8 animate-fade-in">
+              <div className="mx-auto w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 animate-bounce-in">
+                <span className="text-4xl">👤</span>
+              </div>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                {t('profile.editProfile')}
+              </h1>
+              <p className="text-slate-600 dark:text-slate-400">
+                Kişisel bilgilerinizi güncelleyin
+              </p>
+            </div>
+            
+            {/* Error/Success Messages */}
+            {error && (
+              <div className="mx-auto max-w-2xl mb-6">
+                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-4 animate-fade-in">
+                  <div className="flex items-center space-x-2 text-red-600 dark:text-red-400">
+                    <span>⚠️</span>
+                    <span>{error}</span>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {success && (
+              <div className="mx-auto max-w-2xl mb-6">
+                <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-4 animate-fade-in">
+                  <div className="flex items-center space-x-2 text-green-600 dark:text-green-400">
+                    <span>✅</span>
+                    <span>{success}</span>
+                  </div>
+                </div>
+              </div>
+            )}
           
           {/* Profile Card */}
           <div className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-slate-700/30 overflow-hidden animate-slide-up">
@@ -220,6 +284,7 @@ export default function ProfilePage() {
           </div>
         </div>
       </main>
+      )}
     </div>
   );
 }

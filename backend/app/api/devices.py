@@ -161,8 +161,32 @@ def list_user_devices(
     Requires authentication.
     """
     try:
+        logger.info(f"Getting devices for user {current_user.id}")
         devices = db.query(models.Device).filter(models.Device.owner_id == current_user.id).all()
-        return devices
+        logger.info(f"Found {len(devices)} devices")
+        
+        # Convert each device to dict and handle enum manually
+        result = []
+        for device in devices:
+            device_dict = {
+                "id": device.id,
+                "name": device.name,
+                "activation_key": device.activation_key,
+                "owner_id": device.owner_id,
+                "status": device.status.value if device.status else "DEPLOYED",  # Convert enum to string
+                "is_active": device.is_active or False,
+                "created_at": device.created_at,
+                "activated_at": device.activated_at,
+                "last_seen": device.last_seen,
+                "firmware_version": device.firmware_version,
+                "hardware_version": device.hardware_version,
+                "ip_address": device.ip_address,
+                "signal_strength": device.signal_strength,
+                "battery_level": device.battery_level
+            }
+            result.append(device_dict)
+        
+        return result
         
     except SQLAlchemyError as e:
         logger.error(f"Database error listing devices for user {current_user.id}: {str(e)}")
@@ -172,9 +196,12 @@ def list_user_devices(
         )
     except Exception as e:
         logger.error(f"Unexpected error listing devices for user {current_user.id}: {str(e)}")
+        logger.error(f"Error type: {type(e)}")
+        import traceback
+        logger.error(f"Traceback: {traceback.format_exc()}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="An unexpected error occurred"
+            detail=f"An unexpected error occurred: {str(e)}"
         )
 
 @router.get("/devices/{device_id}", response_model=schemas.Device)

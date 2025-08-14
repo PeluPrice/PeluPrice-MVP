@@ -238,7 +238,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                 </label>
                 <div className="px-4 py-3 bg-slate-100 dark:bg-slate-600 border border-slate-300 dark:border-slate-600 rounded-xl">
                   <span className="font-mono text-slate-800 dark:text-slate-200">
-                    {device?.deviceCode || 'Yükleniyor...'}
+                    {device?.deviceCode || device?.id || 'Yükleniyor...'}
                   </span>
                 </div>
               </div>

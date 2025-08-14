@@ -145,3 +145,47 @@ def read_users_me(current_user: schemas.User = Depends(get_current_active_user))
     Requires authentication via Bearer token.
     """
     return current_user
+
+@router.put("/auth/me", response_model=schemas.User)
+def update_user_profile(
+    user_update: schemas.UserUpdate,
+    current_user: schemas.User = Depends(get_current_active_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Update current user profile.
+    
+    Requires authentication via Bearer token.
+    """
+    try:
+        from app.services.user_service import update_user
+        
+        # Update user in database
+        updated_user = update_user(
+            db=db,
+            user_id=current_user.id,
+            user_update=user_update
+        )
+        
+        if not updated_user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
+        
+        return updated_user
+        
+    except HTTPException:
+        raise
+    except SQLAlchemyError as e:
+        logger.error(f"Database error updating user profile: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database error occurred"
+        )
+    except Exception as e:
+        logger.error(f"Unexpected error updating user profile: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="An unexpected error occurred"
+        )

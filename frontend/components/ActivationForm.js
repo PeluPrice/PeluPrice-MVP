@@ -21,7 +21,8 @@ export const ActivationForm = ({ onDeviceActivated }) => {
       onDeviceActivated(response.data);
       setCode('');
     } catch (err) {
-      setError(t('devices.deviceActivationError'));
+      // API'den gelen gerçek error mesajını göster
+      setError(err.message || t('devices.deviceActivationError'));
     } finally {
       setLoading(false);
     }
@@ -58,7 +59,7 @@ export const ActivationForm = ({ onDeviceActivated }) => {
                 required
               />
               <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-                Demo için herhangi bir kod girebilirsiniz
+                Demo için DEMO1 bir kodunu girebilirsiniz
               </p>
             </div>
 
