@@ -12,9 +12,13 @@ export const useTranslation = () => {
   if (!context) {
     // Fallback if not using provider
     return {
-      t: (key) => key,
+      t: (key) => {
+        if (key === 'common.loading') return 'Loading...';
+        return key;
+      },
       locale: 'tr',
-      changeLanguage: () => {}
+      changeLanguage: () => {},
+      isLoading: false
     };
   }
   return context;
@@ -23,6 +27,7 @@ export const useTranslation = () => {
 export const TranslationProvider = ({ children }) => {
   const [locale, setCurrentLocale] = useState('tr');
   const [translations, setTranslations] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   // Initialize locale from localStorage
   useEffect(() => {
@@ -37,9 +42,13 @@ export const TranslationProvider = ({ children }) => {
   // Load messages when locale changes
   useEffect(() => {
     const loadMessages = async () => {
+      setIsLoading(true);
       try {
         let msgs;
         switch (locale) {
+          case 'tr':
+            msgs = await import('./messages/tr.json');
+            break;
           case 'en':
             msgs = await import('./messages/en.json');
             break;
@@ -63,6 +72,8 @@ export const TranslationProvider = ({ children }) => {
         } catch (fallbackError) {
           console.error('Failed to load fallback translations:', fallbackError);
         }
+      } finally {
+        setIsLoading(false);
       }
     };
     
@@ -70,6 +81,12 @@ export const TranslationProvider = ({ children }) => {
   }, [locale]);
 
   const t = (key) => {
+    // If translations are still loading, return a fallback
+    if (isLoading) {
+      if (key === 'common.loading') return 'Loading...';
+      return key;
+    }
+    
     const keys = key.split('.');
     let value = translations;
     for (const k of keys) {
@@ -90,7 +107,8 @@ export const TranslationProvider = ({ children }) => {
   const value = {
     t,
     locale,
-    changeLanguage
+    changeLanguage,
+    isLoading
   };
 
   return (

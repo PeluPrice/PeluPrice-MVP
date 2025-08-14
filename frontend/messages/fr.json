@@ -3,6 +3,7 @@
     "login": "Se connecter",
     "register": "S'inscrire",
     "logout": "Se déconnecter",
+    "home": "Accueil",
     "email": "E-mail",
     "password": "Mot de passe",
     "firstName": "Prénom",
@@ -14,7 +15,9 @@
     "delete": "Supprimer",
     "edit": "Modifier",
     "add": "Ajouter",
+    "adding": "Ajout en cours...",
     "loading": "Chargement...",
+    "saving": "Enregistrement...",
     "error": "Erreur",
     "success": "Succès",
     "confirm": "Confirmer",
@@ -39,7 +42,13 @@
     "passwordRequired": "Le mot de passe est requis",
     "firstNameRequired": "Le prénom est requis",
     "lastNameRequired": "Le nom de famille est requis",
-    "phoneRequired": "Le numéro de téléphone est requis"
+    "phoneRequired": "Le numéro de téléphone est requis",
+    "authenticating": "Authentification...",
+    "noAccountYet": "Vous n'avez pas encore de compte?",
+    "alreadyHaveAccount": "Vous avez déjà un compte?",
+    "loginHere": "Se connecter",
+    "registerHere": "S'inscrire",
+    "redirectingToLogin": "Redirection vers la page de connexion..."
   },
   "devices": {
     "activationCode": "Code d'activation",
@@ -69,12 +78,280 @@
     "uploadSound": "Télécharger un fichier audio",
     "selectCoin": "Sélectionner une cryptomonnaie",
     "searchCoins": "Rechercher des coins... (ex: BTC, ETH)",
-    "noCoinsFound": "Aucun coin trouvé"
+    "noCoinsFound": "Aucun coin trouvé",
+    "saveDevice": "Enregistrer l'appareil",
+    "updateDevice": "Mettre à jour l'appareil",
+    "editDevice": "Modifier l'appareil",
+    "basicInformation": "Informations de base",
+    "cryptoSettings": "Paramètres crypto",
+    "priceThresholds": "Seuils de prix",
+    "lowerThresholdDesc": "L'alarme se déclenche lorsque le prix tombe en dessous de cette valeur",
+    "upperThresholdDesc": "L'alarme se déclenche lorsque le prix dépasse cette valeur",
+    "socialMedia": "Réseaux sociaux",
+    "voiceSettings": "Paramètres vocaux",
+    "voiceType": "Type de voix",
+    "testVoice": "Tester la voix",
+    "testing": "Test en cours...",
+    "testVoicePreview": "Aperçu de la voix sélectionnée",
+    "voiceTestComplete": "Test vocal terminé!",
+    "activationDescription": "Entrez le code d'activation pour ajouter votre premier appareil en peluche",
+    "demoCodeInfo": "Vous pouvez entrer le code DEMO1 pour la démo",
+    "enableTwitterFollow": "Activer le suivi Twitter",
+    "volumeLevel": "Niveau de volume",
+    "silent": "Silencieux",
+    "loud": "Fort",
+    "deviceStatus": "État de l'appareil",
+    "connection": "Connexion",
+    "online": "En ligne",
+    "lastSignal": "Dernier signal",
+    "minutesAgo": "minutes",
+    "batteryStatus": "État de la batterie",
+    "wifiQuality": "Qualité WiFi",
+    "good": "Bon",
+    "quickActions": "Actions rapides",
+    "testSound": "Jouer le son de test",
+    "restartDevice": "Redémarrer l'appareil",
+    "connectionTest": "Tester la connexion",
+    "updateFirmware": "Mettre à jour le firmware",
+    "portfolioManagement": "Gestion de portefeuille",
+    "portfolioDescription": "Suivez votre portefeuille de coins et recevez des rapports quotidiens",
+    "priceAlarms": "Alarmes de prix",
+    "enablePriceAlarms": "Activer les notifications de prix pour",
+    "male": "Homme",
+    "female": "Femme",
+    "enablePortfolioTracking": "Activer le suivi de portefeuille",
+    "dailyReportTime": "Heure du rapport quotidien",
+    "timezone": "Fuseau horaire",
+    "dailyVoiceReport": "Rapport vocal quotidien",
+    "addCoin": "Ajouter une cryptomonnaie",
+    "myPortfolioCoins": "Mes cryptomonnaies de portefeuille",
+    "noCoinAdded": "Aucune cryptomonnaie ajoutée encore",
+    "addCoinsToTrack": "Ajoutez vos cryptomonnaies pour suivre votre portefeuille",
+    "addFirstCoin": "Ajoutez votre première cryptomonnaie",
+    "cryptocurrency": "Cryptomonnaie",
+    "amountOwned": "Quantité possédée",
+    "avgPurchasePrice": "Prix d'achat moyen ($)",
+    "investmentAmount": "Montant d'investissement",
+    "currentValue": "Valeur actuelle",
+    "profitLoss": "Profit/Perte",
+    "change": "Changement",
+    "portfolioSummary": "Résumé du portefeuille",
+    "totalInvestment": "Investissement total",
+    "totalProfitLoss": "Profit/Perte totale",
+    "totalCoins": "Total des cryptomonnaies",
+    "dailyPortfolioAlert": "Votre appareil annoncera l'état de votre portefeuille tous les jours à {time} ({timezone})"
+  },
+  "forms": {
+    "language": "Langue",
+    "deviceName": "Nom de l'appareil",
+    "deviceDescription": "Description"
+  },
+  "profile": {
+    "editProfile": "Modifier le profil",
+    "personalInfo": "Informations personnelles",
+    "contactInfo": "Informations de contact",
+    "updateProfile": "Mettre à jour le profil",
+    "profileUpdated": "Profil mis à jour avec succès!",
+    "updateError": "Erreur lors de la mise à jour du profil",
+    "description": "Mettez à jour vos informations personnelles",
+    "accountInfo": "Informations du compte",
+    "accountType": "Type de compte",
+    "demoAccount": "Compte démo",
+    "membershipDate": "Date d'adhésion",
+    "lastUpdate": "Dernière mise à jour"
   },
   "languages": {
     "tr": "Türkçe",
     "en": "English",
     "de": "Deutsch",
     "fr": "Français"
+  },
+  "homepage": {
+    "topBanner": "Les paiements SEI Coin seront acceptés! Ajouter à la liste de souhaits!",
+    "bannerPrefix": "🚀 BIENTÔT:",
+    "companyTagline": "Leader de la technologie crypto",
+    "badges": {
+      "number1": "⭐ #1 Technologie crypto-peluche",
+      "new": "✨ Nouveau",
+      "popular": "🔥 Populaire"
+    },
+    "heroTitle": "Les plus intelligentes",
+    "heroSubtitle": "Peluches du monde crypto",
+    "heroDescription": "Des peluches équipées d'une technologie LED brevetée suivent votre portefeuille crypto 24h/24 et 7j/7 et fournissent des alertes visuelles en temps réel. Ne manquez aucune opportunité!",
+    "heroStats": {
+      "battery": "16+ semaines d'autonomie",
+      "response": "5< secondes de temps de réponse",
+      "coins": "200+ cryptomonnaies supportées",
+      "support": "Support individuel 24/7"
+    },
+    "cta": {
+      "wishlist": "📝 Ajouter à la liste de souhaits - Bientôt disponible!",
+      "demo": "📱 Démo gratuite"
+    },
+    "activation": {
+      "title": "🎯 Vous avez déjà votre peluche?",
+      "description": "Entrez votre code d'activation et commencez à gérer immédiatement!",
+      "placeholder": "Entrez votre code d'activation (ex: PLU-2024-XXXX)",
+      "button": "Activer"
+    },
+    "navigation": {
+      "features": "Fonctionnalités",
+      "wishlist": "Liste de souhaits",
+      "contact": "Contact",
+      "login": "Se connecter",
+      "register": "S'inscrire"
+    },
+    "features": {
+      "title": "Pourquoi la technologie PeluPrice?",
+      "subtitle": "Technologie de classe mondiale et artisanat de qualité fabriqué à Istanbul",
+      "certifications": {
+        "ce": "🏆 Certifié CE",
+        "rd": "🔬 Laboratoire R&D",
+        "made": "🇹🇷 Fabriqué en Turquie",
+        "shipping": "🌍 Expédition mondiale"
+      },
+      "list": {
+        "led": {
+          "title": "Technologie LED intelligente pour les yeux",
+          "description": "La technologie LED brevetée fait refléter les yeux des peluches les changements de prix en temps réel",
+          "details": "LED RVB + module Wi-Fi"
+        },
+        "crypto": {
+          "title": "Support multi-crypto",
+          "description": "Suivez Bitcoin, Ethereum, BNB, Cardano et plus de 500 cryptomonnaies",
+          "details": "Support de 500+ coins"
+        },
+        "voice": {
+          "title": "Système d'alerte vocale",
+          "description": "Vous informe aux moments critiques avec des effets sonores spéciaux et des fonctionnalités vocales",
+          "details": "Technologie sonore assistée par IA"
+        },
+        "mobile": {
+          "title": "Application mobile",
+          "description": "Gérez votre peluche sur notre plateforme web compatible mobile",
+          "details": "Applications multi-plateformes"
+        },
+        "analytics": {
+          "title": "Analytiques avancées",
+          "description": "Alarme de portefeuille quotidienne qui vous indique les montants de profit/perte et les coins les plus gagnants/perdants",
+          "details": "Analyse par apprentissage automatique"
+        },
+        "security": {
+          "title": "Connexion sécurisée",
+          "description": "Chiffrement de niveau bancaire pour une transmission sécurisée des données",
+          "details": "Chiffrement 256 bits"
+        }
+      }
+    },
+    "wishlistSection": {
+      "title": "Ajouter à la liste de souhaits",
+      "subtitle": "Laissez-nous vous notifier quand le système de paiement SEI Coin sera prêt!",
+      "banner": "💎 Paiements SEI Coin bientôt!",
+      "form": {
+        "name": "Nom complet",
+        "namePlaceholder": "Entrez vos prénom et nom",
+        "email": "Adresse e-mail",
+        "emailPlaceholder": "exemple@email.com",
+        "package": "Paquet d'intérêt",
+        "submit": "📝 Ajouter à la liste de souhaits",
+        "disclaimer": "Nous vous enverrons une notification par e-mail lorsque le paiement SEI Coin sera prêt."
+      }
+    },
+    "packages": {
+      "starter": {
+        "name": "Peluche Starter",
+        "type": "Ours",
+        "color": "Marron",
+        "features": [
+          "1 Peluche intelligente",
+          "Suivi de 5 cryptomonnaies",
+          "Technologie LED de base pour les yeux",
+          "Support d'application mobile",
+          "Notifications par e-mail",
+          "Garantie de 6 mois"
+        ]
+      },
+      "pro": {
+        "name": "Peluche Pro",
+        "popular": "🔥POPULAIRE",
+        "type": "Licorne",
+        "color": "Rose et violet",
+        "features": [
+          "1 Peluche intelligente premium",
+          "Suivi crypto illimité",
+          "Technologie LED RVB avancée",
+          "Système d'alerte vocale",
+          "Analyse assistée par IA",
+          "Notifications push",
+          "Effets musicaux personnalisés",
+          "Garantie d'1 an + service gratuit"
+        ]
+      },
+      "enterprise": {
+        "name": "Set Enterprise",
+        "type": "Set (Ours + Licorne + Dragon)",
+        "color": "Multicolore",
+        "features": [
+          "3 Peluches intelligentes différentes",
+          "Tableau de bord professionnel",
+          "Accès API avancé",
+          "Gestion de portefeuille",
+          "Support technique 24/7",
+          "Programme de formation spécial",
+          "Service client VIP",
+          "Garantie premium de 2 ans"
+        ]
+      },
+      "payment": "💎 Paiement SEI Coin bientôt"
+    },
+    "footer": {
+      "description": "Découvrez l'avenir avec les peluches les plus intelligentes du monde crypto. Système de paiement SEI Coin bientôt!",
+      "quickLinks": "Liens rapides",
+      "contact": "Contact",
+      "email": "📧 info@peluprice.com",
+      "location": "📍 Istanbul, Turquie",
+      "copyright": "© 2025 PeluPrice Technology Inc. Tous droits réservés.",
+      "badges": {
+        "made": "🇹🇷 Fabriqué en Turquie",
+        "sei": "💎 SEI Coin pris en charge"
+      }
+    }
+  },
+  "portfolio": {
+    "currentPrice": "Prix actuel",
+    "purchasePrice": "Prix d'achat",
+      "currentValue": "Valeur actuelle",
+      "investmentAmount": "Montant d'investissement",
+      "profitLoss": "Profit/Perte",
+      "lastUpdate": "Dernière mise à jour",
+      "emptyPortfolio": "Portefeuille vide",
+      "emptyPortfolioDesc": "Vous n'avez pas encore ajouté de cryptomonnaies à votre portefeuille. Commencez à suivre vos investissements en ajoutant des cryptomonnaies.",
+      "portfolioSummary": "Résumé du portefeuille",
+      "totalValue": "Valeur totale",
+      "totalInvestment": "Investissement total",
+      "coinCount": "Nombre de cryptomonnaies",
+      "differentCryptos": "Cryptomonnaies différentes",
+      "bestPerformance": "Meilleure performance",
+      "worstPerformance": "Pire performance",
+      "addCoinToPortfolio": "Ajouter une cryptomonnaie au portefeuille",
+      "selectCoin": "Sélectionner une cryptomonnaie",
+      "searchCoinPlaceholder": "Rechercher une cryptomonnaie (ex: BTC, ETH)",
+      "amount": "Quantité",
+      "amountPlaceholder": "Quantité que vous possédez",
+      "purchasePricePlaceholder": "Votre prix d'achat moyen",
+      "investmentSummary": "Résumé d'investissement",
+      "fillAllFields": "Veuillez remplir tous les champs",
+      "enterValidNumbers": "Veuillez entrer des valeurs numériques valides",
+      "positiveNumbers": "La quantité et le prix d'achat doivent être supérieurs à zéro",
+      "portfolioCoins": "Cryptomonnaies du portefeuille",
+      "addCoin": "Ajouter une cryptomonnaie",
+      "adding": "Ajout en cours...",
+      "addCoinsToTrack": "Ajoutez vos cryptomonnaies pour suivre votre portefeuille",
+      "addFirstCoin": "Ajoutez votre première cryptomonnaie",
+      "noCoinAdded": "Aucune cryptomonnaie ajoutée"
+  },
+  "productImage": {
+    "title": "Image principale du produit",
+    "subtitle": "(800x800 px recommandé)"
   }
 }

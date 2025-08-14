@@ -22,10 +22,10 @@ export const ThresholdInputs = ({
           <span className="text-lg sm:text-2xl">🔔</span>
           <div className="min-w-0 flex-1">
             <h4 className="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">
-              Fiyat Alarmları
+              {t('devices.priceAlarms')}
             </h4>
             <p className="text-xs text-slate-600 dark:text-slate-400 truncate">
-              {coin} için fiyat bildirimlerini etkinleştir
+              {t('devices.enablePriceAlarms')} {coin}
             </p>
           </div>
         </div>

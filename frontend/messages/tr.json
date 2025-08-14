@@ -3,6 +3,7 @@
     "login": "Giriş Yap",
     "register": "Kayıt Ol",
     "logout": "Çıkış Yap",
+    "home": "Ana Sayfa",
     "email": "E-posta",
     "password": "Şifre",
     "firstName": "Ad",
@@ -14,7 +15,9 @@
     "delete": "Sil",
     "edit": "Düzenle",
     "add": "Ekle",
+    "adding": "Ekleniyor...",
     "loading": "Yükleniyor...",
+    "saving": "Kaydediliyor...",
     "error": "Hata",
     "success": "Başarılı",
     "confirm": "Onayla",
@@ -39,7 +42,13 @@
     "passwordRequired": "Şifre gerekli",
     "firstNameRequired": "Ad gerekli",
     "lastNameRequired": "Soyad gerekli",
-    "phoneRequired": "Telefon numarası gerekli"
+    "phoneRequired": "Telefon numarası gerekli",
+    "authenticating": "Kimlik doğrulanıyor...",
+    "noAccountYet": "Hesabınız yok mu?",
+    "alreadyHaveAccount": "Zaten hesabınız var mı?",
+    "loginHere": "Giriş yapın",
+    "registerHere": "Kayıt olun",
+    "redirectingToLogin": "Giriş sayfasına yönlendiriliyorsunuz..."
   },
   "devices": {
     "activationCode": "Aktivasyon Kodu",
@@ -84,7 +93,53 @@
     "testVoice": "Sesi Test Et",
     "testing": "Test Ediliyor...",
     "testVoicePreview": "Seçilen ses önizlemesi",
-    "voiceTestComplete": "Ses testi tamamlandı!"
+    "voiceTestComplete": "Ses testi tamamlandı!",
+    "activationDescription": "İlk peluş cihazınızı eklemek için aktivasyon kodunu girin",
+    "demoCodeInfo": "Demo için DEMO1 kodunu girebilirsiniz",
+    "enableTwitterFollow": "Twitter takibi etkinleştir",
+    "volumeLevel": "Ses Seviyesi",
+    "silent": "Sessiz",
+    "loud": "Yüksek",
+    "deviceStatus": "Cihaz Durumu",
+    "connection": "Bağlantı",
+    "online": "Çevrimiçi",
+    "lastSignal": "Son Sinyal",
+    "minutesAgo": "dakika önce",
+    "batteryStatus": "Pil Durumu",
+    "wifiQuality": "WiFi Kalitesi",
+    "good": "İyi",
+    "quickActions": "Hızlı İşlemler",
+    "testSound": "Test Sesi Çal",
+    "restartDevice": "Cihazı Yeniden Başlat",
+    "connectionTest": "Bağlantı Testi Yap",
+    "updateFirmware": "Firmware Güncelle",
+    "portfolioManagement": "Portfolyo Yönetimi",
+    "portfolioDescription": "Coin portfolyonuzu takip edin ve günlük raporlar alın",
+    "priceAlarms": "Fiyat Alarmları",
+    "enablePriceAlarms": "için fiyat bildirimlerini etkinleştir",
+    "male": "Erkek",
+    "female": "Kadın",
+    "enablePortfolioTracking": "Portfolyo Takibini Aktifleştir",
+    "dailyReportTime": "Günlük Rapor Saati",
+    "timezone": "Saat Dilimi",
+    "dailyVoiceReport": "Günlük sesli rapor",
+    "addCoin": "Coin Ekle",
+    "myPortfolioCoins": "Portfolyo Coinlerim",
+    "noCoinAdded": "Henüz coin eklenmemiş",
+    "addCoinsToTrack": "Portfolyonuzu takip etmek için coinlerinizi ekleyin",
+    "addFirstCoin": "İlk Coin'inizi Ekleyin",
+    "cryptocurrency": "Cryptocurrency",
+    "amountOwned": "Sahip Olduğum Miktar",
+    "avgPurchasePrice": "Ortalama Alış Fiyatı ($)",
+    "investmentAmount": "Yatırım Tutarı",
+    "currentValue": "Güncel Değer",
+    "profitLoss": "Kar/Zarar",
+    "change": "Değişim",
+    "portfolioSummary": "Portfolyo Özeti",
+    "totalInvestment": "Toplam Yatırım",
+    "totalProfitLoss": "Toplam Kar/Zarar",
+    "totalCoins": "Toplam Coin",
+    "dailyPortfolioAlert": "Cihazınız her gün saat {time} ({timezone}) portfolyo durumunuzu sesli olarak bildirecek"
   },
   "forms": {
     "language": "Dil",
@@ -96,12 +151,207 @@
     "personalInfo": "Kişisel Bilgiler",
     "contactInfo": "İletişim Bilgileri",
     "updateProfile": "Profili Güncelle",
-    "profileUpdated": "Profil başarıyla güncellendi"
+    "profileUpdated": "Profil başarıyla güncellendi!",
+    "updateError": "Profil güncellenirken hata oluştu",
+    "description": "Kişisel bilgilerinizi güncelleyin",
+    "accountInfo": "Hesap Bilgileri",
+    "accountType": "Hesap Tipi",
+    "demoAccount": "Demo Hesap",
+    "membershipDate": "Üyelik Tarihi",
+    "lastUpdate": "Son Güncelleme"
   },
   "languages": {
     "tr": "Türkçe",
     "en": "English",
     "de": "Deutsch",
     "fr": "Français"
+  },
+  "homepage": {
+    "topBanner": "🚀 YAKINDA: SEI Coin ile ödeme kabul edilecek! İstek listesine ekleyin!",
+    "bannerPrefix": "🚀 YAKINDA:",
+    "companyTagline": "Kripto Teknoloji Lideri",
+    "badges": {
+      "number1": "⭐ #1 Kripto Peluş Teknolojisi",
+      "new": "✨ Yeni",
+      "popular": "🔥 Popüler"
+    },
+    "heroTitle": "Kripto Dünyasının",
+    "heroSubtitle": "En Akıllı Peluşları",
+    "heroDescription": "Patentli LED teknolojisi ile donatılmış peluş oyuncaklar, kripto portföyünüzü 24/7 takip eder ve gerçek zamanlı görsel uyarılar verir. Hiçbir fırsatı kaçırmayın!",
+    "heroStats": {
+      "battery": "16+ Hafta Pil Dayanıklılığı",
+      "response": "5> Saniyeden kısa sürede tepki",
+      "coins": "200+ Desteklenen Kripto Para",
+      "support": "24/7 Bireysel Destek"
+    },
+    "cta": {
+      "wishlist": "📝 İstek Listesine Ekle - Yakında Satışta!",
+      "demo": "📱 Ücretsiz Demo"
+    },
+    "activation": {
+      "title": "🎯 Zaten Peluşunuz Var mı?",
+      "description": "Aktivasyon kodunuzu girin ve hemen yönetmeye başlayın!",
+      "placeholder": "Aktivasyon kodunuzu giriniz (örn: PLU-2024-XXXX)",
+      "button": "Aktive Et"
+    },
+    "navigation": {
+      "features": "Özellikler",
+      "wishlist": "İstek Listesi",
+      "contact": "İletişim",
+      "login": "Giriş Yap",
+      "register": "Kayıt Ol"
+    },
+    "features": {
+      "title": "Neden PeluPrice Teknolojisi?",
+      "subtitle": "Dünya standartlarında teknoloji ve İstanbul'da üretilen kaliteli işçilik",
+      "certifications": {
+        "ce": "🏆 CE Sertifikalı",
+        "rd": "🔬 R&D Laboratuvarı",
+        "made": "🇹🇷 Türkiye'de Üretim",
+        "shipping": "🌍 Dünya Çapında Kargo"
+      },
+      "list": {
+        "led": {
+          "title": "Akıllı LED Göz Teknolojisi",
+          "description": "Patentli LED teknolojisi ile peluş oyuncakların gözleri gerçek zamanlı fiyat değişimlerini yansıtır",
+          "details": "RGB LED + Wi-Fi modülü"
+        },
+        "crypto": {
+          "title": "Çoklu Kripto Desteği",
+          "description": "Bitcoin, Ethereum, BNB, Cardano ve 500+ kripto para birimini takip edin",
+          "details": "500+ Coin desteği"
+        },
+        "voice": {
+          "title": "Sesli Uyarı Sistemi",
+          "description": "Özel ses efektleri ve konuşma özelliği ile kritik anlarda sizi bilgilendirir",
+          "details": "AI destekli ses teknolojisi"
+        },
+        "mobile": {
+          "title": "Mobil Uygulama",
+          "description": "Mobil destekli web platformunda peluşunuzu yönetin",
+          "details": "Cross-platform uygulamalar"
+        },
+        "analytics": {
+          "title": "Gelişmiş Analitik",
+          "description": "Portföyünüzü her sabah kar zarar miktarı değeri en çok artan en çok düşen coinleri söyleyen alarm",
+          "details": "Machine Learning analizi"
+        },
+        "security": {
+          "title": "Güvenli Bağlantı",
+          "description": "Bankacılık seviyesi şifreleme ile güvenli veri iletişimi",
+          "details": "256-bit şifreleme"
+        }
+      }
+    },
+    "wishlistSection": {
+      "title": "İstek Listesine Ekle",
+      "subtitle": "SEI Coin ödeme sistemi hazır olduğunda size haber verelim!",
+      "banner": "💎 SEI Coin ile ödeme yakında!",
+      "form": {
+        "name": "Adınız Soyadınız",
+        "namePlaceholder": "Adınızı ve soyadınızı giriniz",
+        "email": "E-posta Adresiniz",
+        "emailPlaceholder": "örnek@email.com",
+        "package": "İlgilendiğiniz Paket",
+        "submit": "📝 İstek Listesine Ekle",
+        "disclaimer": "SEI Coin ödeme hazır olduğunda size e-posta ile bildirim göndereceğiz."
+      }
+    },
+    "packages": {
+      "starter": {
+        "name": "Starter Peluş",
+        "type": "Ayı",
+        "color": "Kahverengi",
+        "features": [
+          "1 Adet Akıllı Peluş Oyuncak",
+          "5 Kripto Para Takibi",
+          "Temel LED Göz Teknolojisi",
+          "Mobil Uygulama Desteği",
+          "Email Bildirimleri",
+          "6 Ay Garanti"
+        ]
+      },
+      "pro": {
+        "name": "Pro Peluş",
+        "popular": "🔥POPÜLER",
+        "type": "Unicorn",
+        "color": "Pembe & Mor",
+        "features": [
+          "1 Adet Premium Akıllı Peluş",
+          "Sınırsız Kripto Para Takibi",
+          "Gelişmiş RGB LED Teknolojisi",
+          "Sesli Uyarı Sistemi",
+          "AI Destekli Analiz",
+          "Push Bildirimleri",
+          "Özel Müzik Efektleri",
+          "1 Yıl Garanti + Ücretsiz Servis"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise Set",
+        "type": "Set (Ayı + Unicorn + Dragon)",
+        "color": "Çoklu Renk",
+        "features": [
+          "3 Adet Farklı Akıllı Peluş",
+          "Profesyonel Dashboard",
+          "Gelişmiş API Erişimi",
+          "Portfolio Yönetimi",
+          "7/24 Teknik Destek",
+          "Özel Eğitim Programı",
+          "VIP Müşteri Hizmeti",
+          "2 Yıl Premium Garanti"
+        ]
+      },
+      "payment": "💎 SEI Coin ile ödeme yakında"
+    },
+    "footer": {
+      "description": "Kripto dünyasının en akıllı peluş oyuncakları ile geleceği yaşayın. SEI Coin ödeme sistemi yakında!",
+      "quickLinks": "Hızlı Linkler",
+      "contact": "İletişim",
+      "email": "📧 info@peluprice.com",
+      "location": "📍 İstanbul, Türkiye",
+      "copyright": "© 2025 PeluPrice Technology Inc. Tüm hakları saklıdır.",
+      "badges": {
+        "made": "🇹🇷 Türkiye'de Üretim",
+        "sei": "💎 SEI Coin Destekli"
+      }
+    },
+    "productImage": {
+      "title": "Ana Ürün Görseli",
+      "subtitle": "(800x800 px önerilir)"
+    }
+  },
+  "portfolio": {
+    "currentPrice": "Güncel Fiyat",
+    "purchasePrice": "Alış Fiyatı",
+    "currentValue": "Güncel Değer",
+    "investmentAmount": "Yatırım Tutarı",
+    "profitLoss": "Kar/Zarar",
+    "lastUpdate": "Son güncelleme",
+    "emptyPortfolio": "Portfolyo Boş",
+    "emptyPortfolioDesc": "Henüz portföyünüze coin eklemediniz. Coin ekleyerek yatırımlarınızı takip etmeye başlayın.",
+    "portfolioSummary": "Portfolyo Özeti",
+    "totalValue": "Toplam Değer",
+    "totalInvestment": "Toplam Yatırım",
+    "coinCount": "Coin Sayısı",
+    "differentCryptos": "Farklı kripto para",
+    "bestPerformance": "En İyi Performans",
+    "worstPerformance": "En Düşük Performans",
+    "addCoinToPortfolio": "Portföye Coin Ekle",
+    "selectCoin": "Coin Seçin",
+    "searchCoinPlaceholder": "Coin ara (örn: BTC, ETH)",
+    "amount": "Miktar",
+    "amountPlaceholder": "Sahip olduğunuz miktar",
+    "purchasePricePlaceholder": "Ortalama alış fiyatınız",
+    "investmentSummary": "Yatırım Özeti",
+    "fillAllFields": "Lütfen tüm alanları doldurun",
+    "enterValidNumbers": "Lütfen geçerli sayısal değerler girin",
+    "positiveNumbers": "Miktar ve alış fiyatı sıfırdan büyük olmalıdır",
+    "portfolioCoins": "Portföy Coinleri",
+    "addCoin": "Coin Ekle",
+    "adding": "Ekleniyor...",
+    "addCoinsToTrack": "Portfolyonuzu takip etmek için coinlerinizi ekleyin",
+    "addFirstCoin": "İlk Coin'inizi Ekleyin",
+    "noCoinAdded": "Henüz Coin Eklenmedi"
   }
 }

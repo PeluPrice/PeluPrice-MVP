@@ -19,6 +19,8 @@ export const VoiceTester = ({ voice }) => {
   };
 
   const selectedVoiceData = config.voiceOptions.find(v => v.id === voice);
+  const genderText = selectedVoiceData?.gender ? t(`devices.${selectedVoiceData.gender}`) : '';
+  const displayName = selectedVoiceData ? `${selectedVoiceData.name} (${genderText})` : voice;
 
   return (
     <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
@@ -27,7 +29,7 @@ export const VoiceTester = ({ voice }) => {
           <div className="text-2xl">🔊</div>
           <div>
             <div className="font-medium text-slate-800 dark:text-slate-200">
-              {selectedVoiceData?.name || voice}
+              {displayName}
             </div>
             <div className="text-sm text-slate-600 dark:text-slate-400">
               {t('devices.testVoicePreview')}
