@@ -1,22 +1,48 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from '../i18n';
-import { config } from '../lib/config';
+import { okxService } from '../lib/okx-service';
 
 export const CoinSelector = ({ selectedCoin, onCoinSelect }) => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
+  const [supportedCoins, setSupportedCoins] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // OKX'den desteklenen coinleri çek
+  useEffect(() => {
+    const fetchSupportedCoins = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const coins = await okxService.getSupportedCoins();
+        setSupportedCoins(coins);
+      } catch (err) {
+        console.error('Coin listesi çekme hatası:', err);
+        setError('Coin listesi yüklenemedi');
+        // Fallback olarak config'den coinleri kullan
+        import('../lib/config').then(({ config }) => {
+          setSupportedCoins(config.supportedCoins);
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSupportedCoins();
+  }, []);
 
   // Arama terimine göre filtrelenen coinler
   const filteredCoins = useMemo(() => {
     if (!searchTerm.trim()) {
-      return config.supportedCoins;
+      return supportedCoins;
     }
     
     const searchLower = searchTerm.toLowerCase().trim();
     
-    return config.supportedCoins.filter(coin => {
+    return supportedCoins.filter(coin => {
       const coinLower = coin.toLowerCase();
       // Tam eşleşme öncelikli, sonra başlangıç eşleşmesi, sonra içinde geçme
       return coinLower === searchLower || 
@@ -39,13 +65,37 @@ export const CoinSelector = ({ selectedCoin, onCoinSelect }) => {
       // Son olarak alfabetik sıralama
       return a.localeCompare(b);
     });
-  }, [searchTerm]);
+  }, [searchTerm, supportedCoins]);
+
+  if (loading) {
+    return (
+      <div>
+        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
+          {t('devices.selectCoin')}
+        </label>
+        <div className="flex items-center justify-center py-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+          <span className="ml-3 text-slate-600 dark:text-slate-400">
+            Coinler yükleniyor...
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
       <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
         {t('devices.selectCoin')}
       </label>
+      
+      {error && (
+        <div className="mb-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+          <p className="text-sm text-yellow-800 dark:text-yellow-200">
+            ⚠️ {error}
+          </p>
+        </div>
+      )}
       
       {/* Arama Kutusu */}
       <div className="mb-4">

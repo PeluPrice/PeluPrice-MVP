@@ -231,11 +231,15 @@ export const DeviceForm = ({ device, onSave, saving }) => {
                   onChange={(e) => updateSetting('voice', e.target.value)}
                   className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/50 dark:bg-slate-800/50 border border-slate-300 dark:border-slate-600 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-800 dark:text-slate-200 text-sm sm:text-base"
                 >
-                  {config.voiceOptions.map(voice => (
-                    <option key={voice.id} value={voice.id}>
-                      {voice.name}
-                    </option>
-                  ))}
+                  {config.voiceOptions.map(voice => {
+                    const genderText = voice.gender ? t(`devices.${voice.gender}`) : '';
+                    const displayName = `${voice.name} (${genderText})`;
+                    return (
+                      <option key={voice.id} value={voice.id}>
+                        {displayName}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
 

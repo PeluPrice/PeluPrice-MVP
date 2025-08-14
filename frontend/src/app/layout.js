@@ -3,13 +3,13 @@ import { AuthProvider } from '../../context/AuthContext';
 import { TranslationProvider } from '../../i18n';
 
 export const metadata = {
-  title: "PeluPrice - Kripto Dünyasının En Akıllı Peluş Oyuncakları",
-  description: "Patentli LED teknolojisi ile donatılmış peluş oyuncaklar, kripto portföyünüzü 24/7 takip eder. Yeşil gözler kar, kırmızı gözler zarar! ₺2,999'dan başlayan fiyatlar, ücretsiz kargo.",
-  keywords: "kripto, bitcoin, ethereum, peluş oyuncak, akıllı oyuncak, kripto alarm, fiyat takibi, LED teknoloji",
+  title: "PeluPrice - World's Smartest Crypto Plush Toys",
+  description: "Plush toys equipped with patented LED technology track your crypto portfolio 24/7. Green eyes for profit, red eyes for loss! Starting from $299, free shipping worldwide.",
+  keywords: "crypto, bitcoin, ethereum, plush toy, smart toy, crypto alarm, price tracking, LED technology",
   metadataBase: new URL('https://peluprice.com'),
   openGraph: {
-    title: "PeluPrice - Kripto Dünyasının En Akıllı Peluş Oyuncakları",
-    description: "Sevimli peluş oyuncaklarınızla kripto piyasasını takip edin. 50,000+ mutlu müşteri!",
+    title: "PeluPrice - World's Smartest Crypto Plush Toys",
+    description: "Track the crypto market with adorable plush toys. 50,000+ happy customers!",
     url: 'https://peluprice.com',
     siteName: 'PeluPrice',
     images: [
@@ -17,15 +17,15 @@ export const metadata = {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'PeluPrice Akıllı Peluş Oyuncaklar',
+        alt: 'PeluPrice Smart Plush Toys',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "PeluPrice - Kripto Dünyasının En Akıllı Peluş Oyuncakları",
-    description: "Sevimli peluş oyuncaklarınızla kripto piyasasını takip edin!",
+    title: "PeluPrice - World's Smartest Crypto Plush Toys",
+    description: "Track the crypto market with adorable plush toys!",
     images: ['/twitter-image.jpg'],
   },
   robots: {
@@ -43,7 +43,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="tr">
+    <html lang="en">
       <body className="antialiased">
         <TranslationProvider>
           <AuthProvider>

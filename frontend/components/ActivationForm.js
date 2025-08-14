@@ -59,7 +59,7 @@ export const ActivationForm = ({ onDeviceActivated }) => {
                 required
               />
               <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
-                Demo için DEMO1 bir kodunu girebilirsiniz
+                {t('devices.demoCodeInfo')}
               </p>
             </div>
 

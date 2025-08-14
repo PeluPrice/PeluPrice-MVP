@@ -45,7 +45,7 @@ export default function ProfilePage() {
     
     try {
       const response = await updateProfile(formData);
-      setSuccess('Profil başarıyla güncellendi!');
+      setSuccess(t('profile.profileUpdated'));
       setEditing(false);
       
       // AuthContext'teki user'ı güncelle
@@ -57,7 +57,7 @@ export default function ProfilePage() {
       }, 3000);
       
     } catch (err) {
-      setError(err.message || 'Profil güncellenirken hata oluştu');
+      setError(err.message || t('profile.updateError'));
     } finally {
       setSaving(false);
     }
@@ -88,7 +88,7 @@ export default function ProfilePage() {
         <div className="container mx-auto px-4 py-8 relative z-10">
           <div className="max-w-2xl mx-auto text-center">
             <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-slate-600 dark:text-slate-400">Profil yükleniyor...</p>
+            <p className="text-slate-600 dark:text-slate-400">Profile Loading...</p>
           </div>
         </div>
       ) : (
@@ -103,7 +103,7 @@ export default function ProfilePage() {
                 {t('profile.editProfile')}
               </h1>
               <p className="text-slate-600 dark:text-slate-400">
-                Kişisel bilgilerinizi güncelleyin
+                {t('profile.description')}
               </p>
             </div>
             
@@ -273,13 +273,13 @@ export default function ProfilePage() {
                 <span className="text-white text-sm">ℹ️</span>
               </div>
               <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200">
-                Hesap Bilgileri
+                {t('profile.accountInfo')}
               </h3>
             </div>
             <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
-              <p><span className="font-medium">Hesap Tipi:</span> Demo Hesap</p>
-              <p><span className="font-medium">Üyelik Tarihi:</span> {new Date(user?.createdAt || Date.now()).toLocaleDateString('tr-TR')}</p>
-              <p><span className="font-medium">Son Güncelleme:</span> {new Date().toLocaleDateString('tr-TR')}</p>
+              <p><span className="font-medium">{t('profile.accountType')}:</span> {t('profile.demoAccount')}</p>
+              <p><span className="font-medium">{t('profile.membershipDate')}:</span> {new Date(user?.createdAt || Date.now()).toLocaleDateString('tr-TR')}</p>
+              <p><span className="font-medium">{t('profile.lastUpdate')}:</span> {new Date().toLocaleDateString('tr-TR')}</p>
             </div>
           </div>
         </div>

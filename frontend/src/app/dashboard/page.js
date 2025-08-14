@@ -72,7 +72,7 @@ export default function DashboardPage() {
             <div className="animate-spin rounded-full h-20 w-20 border-4 border-blue-200 dark:border-blue-800"></div>
             <div className="animate-spin rounded-full h-20 w-20 border-4 border-transparent border-t-blue-600 dark:border-t-blue-400 absolute top-0"></div>
           </div>
-          <p className="mt-6 text-slate-600 dark:text-slate-300 font-medium">Kimlik doğrulanıyor...</p>
+          <p className="mt-6 text-slate-600 dark:text-slate-300 font-medium">{t('auth.authenticating')}</p>
         </div>
       </div>
     );
@@ -123,7 +123,7 @@ export default function DashboardPage() {
                   </svg>
                 </div>
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{t('devices.noDevices')}</h2>
-                <p className="text-slate-600 dark:text-slate-300">İlk peluş cihazınızı eklemek için aktivasyon kodunu girin</p>
+                <p className="text-slate-600 dark:text-slate-300">{t('devices.activationDescription')}</p>
               </div>
               <ActivationForm onDeviceActivated={handleDeviceActivated} />
             </div>

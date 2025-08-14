@@ -6,6 +6,9 @@ import { config } from '../lib/config';
 import { CoinSelector } from './CoinSelector';
 import { ThresholdInputs } from './ThresholdInputs';
 import { VoiceTester } from './VoiceTester';
+import { AddCoinForm } from './AddCoinForm';
+import { PortfolioCard } from './PortfolioCard';
+import { PortfolioSummary } from './PortfolioSummary';
 
 export const DeviceManagementGrid = ({ device, onSave }) => {
   const [formData, setFormData] = useState({
@@ -34,6 +37,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
   });
 
   const [saving, setSaving] = useState(false);
+  const [showAddCoinForm, setShowAddCoinForm] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -136,45 +140,45 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
   };
 
   const addCoinToPortfolio = () => {
-    const newCoin = {
-      symbol: 'BTC',
-      amount: '',
-      purchasePrice: ''
-    };
+    setShowAddCoinForm(true);
+  };
+
+  const handleAddCoin = (coinData) => {
     setFormData(prev => ({
       ...prev,
       settings: {
         ...prev.settings,
         portfolio: {
           ...prev.settings.portfolio,
-          coins: [...prev.settings.portfolio.coins, newCoin]
+          coins: [...prev.settings.portfolio.coins, coinData]
+        }
+      }
+    }));
+    setShowAddCoinForm(false);
+  };
+
+  const removeCoinFromPortfolio = (coinId) => {
+    setFormData(prev => ({
+      ...prev,
+      settings: {
+        ...prev.settings,
+        portfolio: {
+          ...prev.settings.portfolio,
+          coins: prev.settings.portfolio.coins.filter(coin => coin.id !== coinId)
         }
       }
     }));
   };
 
-  const removeCoinFromPortfolio = (index) => {
+  const updatePortfolioCoin = (coinId, field, value) => {
     setFormData(prev => ({
       ...prev,
       settings: {
         ...prev.settings,
         portfolio: {
           ...prev.settings.portfolio,
-          coins: prev.settings.portfolio.coins.filter((_, i) => i !== index)
-        }
-      }
-    }));
-  };
-
-  const updatePortfolioCoin = (index, field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      settings: {
-        ...prev.settings,
-        portfolio: {
-          ...prev.settings.portfolio,
-          coins: prev.settings.portfolio.coins.map((coin, i) => 
-            i === index ? { ...coin, [field]: value } : coin
+          coins: prev.settings.portfolio.coins.map(coin => 
+            coin.id === coinId ? { ...coin, [field]: value } : coin
           )
         }
       }
@@ -182,7 +186,20 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <>
+      {/* AddCoinForm Modal */}
+      {showAddCoinForm && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="max-w-md w-full">
+            <AddCoinForm 
+              onAddCoin={handleAddCoin}
+              onCancel={() => setShowAddCoinForm(false)}
+            />
+          </div>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-6">
       {/* Grid Layout - Full width optimized */}
       <div className="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-4 h-full w-full">
         
@@ -238,7 +255,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                 </label>
                 <div className="px-4 py-3 bg-slate-100 dark:bg-slate-600 border border-slate-300 dark:border-slate-600 rounded-xl">
                   <span className="font-mono text-slate-800 dark:text-slate-200">
-                    {device?.deviceCode || device?.id || 'Yükleniyor...'}
+                    {device?.deviceCode || device?.id || 'Loading...'}
                   </span>
                 </div>
               </div>
@@ -266,11 +283,15 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                   onChange={(e) => updateSetting('voice', e.target.value)}
                   className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-800 dark:text-slate-200"
                 >
-                  {config.voiceOptions.map(voice => (
-                    <option key={voice.id} value={voice.id}>
-                      {voice.name}
-                    </option>
-                  ))}
+                  {config.voiceOptions.map(voice => {
+                    const genderText = voice.gender ? t(`devices.${voice.gender}`) : '';
+                    const displayName = `${voice.name} (${genderText})`;
+                    return (
+                      <option key={voice.id} value={voice.id}>
+                        {displayName}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
 
@@ -279,7 +300,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
               {/* Volume Control */}
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                  Ses Seviyesi
+                  {t('devices.volumeLevel')}
                 </label>
                 <input
                   type="range"
@@ -289,8 +310,8 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                   className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer dark:bg-slate-700"
                 />
                 <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 mt-1">
-                  <span>Sessiz</span>
-                  <span>Yüksek</span>
+                  <span>{t('devices.silent')}</span>
+                  <span>{t('devices.loud')}</span>
                 </div>
               </div>
             </div>
@@ -354,26 +375,26 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                 📊
               </div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white ml-3">
-                Cihaz Durumu
+                {t('devices.deviceStatus')}
               </h3>
             </div>
             
             <div className="space-y-3">
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700 rounded-xl">
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Bağlantı</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{t('devices.connection')}</span>
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
                   <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                  Çevrimiçi
+                  {t('devices.online')}
                 </span>
               </div>
               
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700 rounded-xl">
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Son Sinyal</span>
-                <span className="text-sm text-slate-600 dark:text-slate-400">2 dakika önce</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{t('devices.lastSignal')}</span>
+                <span className="text-sm text-slate-600 dark:text-slate-400">2 {t('devices.minutesAgo')}</span>
               </div>
 
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700 rounded-xl">
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Pil Durumu</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{t('devices.batteryStatus')}</span>
                 <div className="flex items-center">
                   <div className="w-8 h-4 bg-slate-300 dark:bg-slate-600 rounded-sm mr-2">
                     <div className="w-6 h-full bg-green-500 rounded-sm"></div>
@@ -383,7 +404,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
               </div>
 
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700 rounded-xl">
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">WiFi Kalitesi</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{t('devices.wifiQuality')}</span>
                 <div className="flex items-center">
                   <div className="flex space-x-1 mr-2">
                     <div className="w-1 h-3 bg-green-500 rounded-full"></div>
@@ -391,7 +412,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                     <div className="w-1 h-5 bg-green-500 rounded-full"></div>
                     <div className="w-1 h-3 bg-slate-300 dark:bg-slate-600 rounded-full"></div>
                   </div>
-                  <span className="text-sm text-slate-600 dark:text-slate-400">İyi</span>
+                  <span className="text-sm text-slate-600 dark:text-slate-400">{t('devices.good')}</span>
                 </div>
               </div>
             </div>
@@ -404,7 +425,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                 ⚡
               </div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white ml-3">
-                Hızlı İşlemler
+                {t('devices.quickActions')}
               </h3>
             </div>
             
@@ -416,7 +437,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142M9.879 9.879l4.242 4.242" />
                 </svg>
-                Test Sesi Çal
+                {t('devices.testSound')}
               </button>
               
               <button
@@ -426,7 +447,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
-                Cihazı Yeniden Başlat
+                {t('devices.restartDevice')}
               </button>
               
               <button
@@ -436,7 +457,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Bağlantı Testi Yap
+                {t('devices.connectionTest')}
               </button>
 
               <button
@@ -446,7 +467,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707" />
                 </svg>
-                Firmware Güncelle
+                {t('devices.updateFirmware')}
               </button>
             </div>
           </div>
@@ -493,10 +514,10 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
             </div>
             <div className="ml-4">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                Portfolyo Yönetimi
+                {t('devices.portfolioManagement')}
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400">
-                Coin portfolyonuzu takip edin ve günlük raporlar alın
+                {t('devices.portfolioDescription')}
               </p>
             </div>
           </div>
@@ -509,7 +530,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                 className="w-5 h-5 text-green-600 bg-slate-50 dark:bg-slate-700 border-slate-300 dark:border-slate-600 rounded focus:ring-green-500 focus:ring-2"
               />
               <label className="ml-2 text-sm font-medium text-slate-700 dark:text-slate-300">
-                Portfolyo Takibini Aktifleştir
+                {t('devices.enablePortfolioTracking')}
               </label>
             </div>
           </div>
@@ -521,7 +542,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 bg-slate-50 dark:bg-slate-700 rounded-xl">
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                  Günlük Rapor Saati
+                  {t('devices.dailyReportTime')}
                 </label>
                 <input
                   type="time"
@@ -533,7 +554,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
 
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                  Saat Dilimi
+                  {t('devices.timezone')}
                 </label>
                 <select
                   value={formData.settings.portfolio.timezone}
@@ -566,7 +587,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                   className="w-4 h-4 text-green-600 rounded focus:ring-green-500"
                 />
                 <label className="ml-2 text-sm text-slate-700 dark:text-slate-300">
-                  Günlük sesli rapor
+                  {t('devices.dailyVoiceReport')}
                 </label>
               </div>
 
@@ -579,30 +600,91 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
-                  Coin Ekle
+                  {t('portfolio.addCoin')}
                 </button>
               </div>
             </div>
 
-            {/* Portfolio Coins List */}
+            {/* Portfolyo Yönetimi */}
             <div>
-              <h4 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-4">Portfolyo Coinlerim</h4>
+              <h4 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-4">
+                {t('devices.myPortfolioCoins')}
+              </h4>
               
+              {/* Portfolyo Özeti */}
+              <div className="mb-6">
+                <PortfolioSummary coins={formData.settings.portfolio.coins} />
+              </div>
+
+              {/* Portfolyo Coinleri */}
               {formData.settings.portfolio.coins.length === 0 ? (
                 <div className="text-center py-12 bg-slate-50 dark:bg-slate-700 rounded-xl">
                   <div className="text-6xl mb-4">📊</div>
                   <h3 className="text-lg font-medium text-slate-800 dark:text-slate-200 mb-2">
-                    Henüz coin eklenmemiş
+                    {t('portfolio.noCoinAdded')}
                   </h3>
                   <p className="text-slate-600 dark:text-slate-400 mb-4">
-                    Portfolyonuzu takip etmek için coinlerinizi ekleyin
+                    {t('portfolio.addCoinsToTrack')}
                   </p>
                   <button
                     type="button"
                     onClick={addCoinToPortfolio}
                     className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors duration-200 font-medium"
                   >
-                    İlk Coin'inizi Ekleyin
+                    {t('portfolio.addFirstCoin')}
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <h5 className="text-md font-medium text-slate-700 dark:text-slate-300">
+                      {t('portfolio.portfolioCoins')} ({formData.settings.portfolio.coins.length})
+                    </h5>
+                    <button
+                      type="button"
+                      onClick={addCoinToPortfolio}
+                      className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors duration-200 text-sm font-medium flex items-center"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      </svg>
+                      {t('portfolio.addCoin')}
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {formData.settings.portfolio.coins.map((coin) => (
+                      <PortfolioCard
+                        key={coin.id}
+                        coin={coin}
+                        onUpdate={(field, value) => updatePortfolioCoin(coin.id, field, value)}
+                        onRemove={removeCoinFromPortfolio}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Portfolio Summary için yer tutma - artık PortfolioSummary bileşeni kullanılıyor */}
+            {/* <div>
+              <h4 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-4">{t('devices.myPortfolioCoins')}</h4>
+              
+              {formData.settings.portfolio.coins.length === 0 ? (
+                <div className="text-center py-12 bg-slate-50 dark:bg-slate-700 rounded-xl">
+                  <div className="text-6xl mb-4">📊</div>
+                  <h3 className="text-lg font-medium text-slate-800 dark:text-slate-200 mb-2">
+                    {t('portfolio.noCoinAdded')}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 mb-4">
+                    {t('portfolio.addCoinsToTrack')}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={addCoinToPortfolio}
+                    className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors duration-200 font-medium"
+                  >
+                    {t('portfolio.addFirstCoin')}
                   </button>
                 </div>
               ) : (
@@ -633,7 +715,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                           <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                            Cryptocurrency
+                            {t('devices.cryptocurrency')}
                           </label>
                           <select
                             value={coin.symbol}
@@ -660,7 +742,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                         
                         <div>
                           <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                            Sahip Olduğum Miktar
+                            {t('devices.amountOwned')}
                           </label>
                           <input
                             type="number"
@@ -674,7 +756,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                         
                         <div>
                           <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                            Ortalama Alış Fiyatı ($)
+                            {t('devices.avgPurchasePrice')}
                           </label>
                           <input
                             type="number"
@@ -688,32 +770,32 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                       </div>
                       
                       {/* Coin Performance Preview */}
-                      {coin.amount && coin.purchasePrice && (
+                      {/* {coin.amount && coin.purchasePrice && (
                         <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-600">
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             <div className="text-center">
                               <div className="text-lg font-bold text-slate-800 dark:text-slate-200">
                                 ${(parseFloat(coin.amount) * parseFloat(coin.purchasePrice)).toFixed(2)}
                               </div>
-                              <div className="text-xs text-slate-600 dark:text-slate-400">Yatırım Tutarı</div>
+                              <div className="text-xs text-slate-600 dark:text-slate-400">{t('devices.investmentAmount')}</div>
                             </div>
                             <div className="text-center">
                               <div className="text-lg font-bold text-blue-600">
                                 $--
                               </div>
-                              <div className="text-xs text-slate-600 dark:text-slate-400">Güncel Değer</div>
+                              <div className="text-xs text-slate-600 dark:text-slate-400">{t('devices.currentValue')}</div>
                             </div>
                             <div className="text-center">
                               <div className="text-lg font-bold text-green-600">
                                 $--
                               </div>
-                              <div className="text-xs text-slate-600 dark:text-slate-400">Kar/Zarar</div>
+                              <div className="text-xs text-slate-600 dark:text-slate-400">{t('devices.profitLoss')}</div>
                             </div>
                             <div className="text-center">
                               <div className="text-lg font-bold text-purple-600">
                                 --%
                               </div>
-                              <div className="text-xs text-slate-600 dark:text-slate-400">Değişim</div>
+                              <div className="text-xs text-slate-600 dark:text-slate-400">{t('devices.change')}</div>
                             </div>
                           </div>
                         </div>
@@ -722,55 +804,7 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
                   ))}
                 </div>
               )}
-            </div>
-
-            {/* Portfolio Summary */}
-            {formData.settings.portfolio.coins.length > 0 && (
-              <div className="p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border border-green-200 dark:border-green-800">
-                <h4 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-6 flex items-center">
-                  <svg className="w-6 h-6 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                  Portfolyo Özeti
-                </h4>
-                
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg">
-                    <div className="text-2xl font-bold text-slate-800 dark:text-slate-200">
-                      ${formData.settings.portfolio.coins.reduce((total, coin) => 
-                        total + (parseFloat(coin.amount || 0) * parseFloat(coin.purchasePrice || 0)), 0
-                      ).toFixed(2)}
-                    </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">Toplam Yatırım</div>
-                  </div>
-                  
-                  <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg">
-                    <div className="text-2xl font-bold text-blue-600">
-                      $--
-                    </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">Güncel Değer</div>
-                  </div>
-                  
-                  <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg">
-                    <div className="text-2xl font-bold text-green-600">
-                      $-- (+--%)
-                    </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">Toplam Kar/Zarar</div>
-                  </div>
-                  
-                  <div className="text-center p-4 bg-white dark:bg-slate-800 rounded-lg">
-                    <div className="text-2xl font-bold text-purple-600">
-                      {formData.settings.portfolio.coins.length}
-                    </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">Toplam Coin</div>
-                  </div>
-                </div>
-
-                <div className="mt-6 text-sm text-slate-600 dark:text-slate-400 text-center">
-                  🔔 Cihazınız her gün saat {formData.settings.portfolio.alertTime} ({formData.settings.portfolio.timezone.split('/')[1]?.replace('_', ' ') || formData.settings.portfolio.timezone}) portfolyo durumunuzu sesli olarak bildirecek
-                </div>
-              </div>
-            )}
+            </div>  */}
           </div>
         )}
       </div>
@@ -798,7 +832,8 @@ export const DeviceManagementGrid = ({ device, onSave }) => {
         </button>
       </div>
     </form>
+    </>
   );
 };
 
-export default DeviceManagementGrid;
+// export { DeviceManagementGrid };

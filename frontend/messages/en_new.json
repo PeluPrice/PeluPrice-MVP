@@ -3,7 +3,6 @@
     "login": "Login",
     "register": "Register",
     "logout": "Logout",
-    "home": "Home",
     "email": "Email",
     "password": "Password",
     "firstName": "First Name",
@@ -15,9 +14,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "add": "Add",
-    "adding": "Adding...",
     "loading": "Loading...",
-    "saving": "Saving...",
     "error": "Error",
     "success": "Success",
     "confirm": "Confirm",
@@ -141,20 +138,6 @@
     "totalCoins": "Total Coins",
     "dailyPortfolioAlert": "Your device will voice your portfolio status daily at {time} ({timezone})"
   },
-  "profile": {
-    "editProfile": "Edit Profile",
-    "personalInfo": "Personal Information",
-    "contactInfo": "Contact Information",
-    "updateProfile": "Update Profile",
-    "profileUpdated": "Profile updated successfully!",
-    "updateError": "Error occurred while updating profile",
-    "description": "Update your personal information",
-    "accountInfo": "Account Information",
-    "accountType": "Account Type",
-    "demoAccount": "Demo Account",
-    "membershipDate": "Membership Date",
-    "lastUpdate": "Last Update"
-  },
   "languages": {
     "tr": "Türkçe",
     "en": "English",
@@ -256,46 +239,18 @@
       "starter": {
         "name": "Starter Plush",
         "type": "Bear",
-        "color": "Brown",
-        "features": [
-          "1 Smart Plush Toy",
-          "5 Cryptocurrency Tracking",
-          "Basic LED Eye Technology",
-          "Mobile App Support",
-          "Email Notifications",
-          "6 Month Warranty"
-        ]
+        "color": "Brown"
       },
       "pro": {
         "name": "Pro Plush",
         "popular": "🔥POPULAR",
         "type": "Unicorn",
-        "color": "Pink & Purple",
-        "features": [
-          "1 Premium Smart Plush",
-          "Unlimited Crypto Tracking",
-          "Advanced RGB LED Technology",
-          "Voice Alert System",
-          "AI-Powered Analysis",
-          "Push Notifications",
-          "Custom Music Effects",
-          "1 Year Warranty + Free Service"
-        ]
+        "color": "Pink & Purple"
       },
       "enterprise": {
         "name": "Enterprise Set",
         "type": "Set (Bear + Unicorn + Dragon)",
-        "color": "Multi-Color",
-        "features": [
-          "3 Different Smart Plushies",
-          "Professional Dashboard",
-          "Advanced API Access",
-          "Portfolio Management",
-          "24/7 Technical Support",
-          "Special Training Program",
-          "VIP Customer Service",
-          "2 Year Premium Warranty"
-        ]
+        "color": "Multi-Color"
       },
       "payment": "💎 SEI Coin payment coming soon"
     },
@@ -311,42 +266,5 @@
         "sei": "💎 SEI Coin Supported"
       }
     }
-  },
-  "portfolio": {
-    "currentPrice": "Current Price",
-    "purchasePrice": "Purchase Price",
-      "currentValue": "Current Value",
-      "investmentAmount": "Investment Amount",
-      "profitLoss": "Profit/Loss",
-      "lastUpdate": "Last update",
-      "emptyPortfolio": "Portfolio Empty",
-      "emptyPortfolioDesc": "You haven't added any coins to your portfolio yet. Start tracking your investments by adding coins.",
-      "portfolioSummary": "Portfolio Summary",
-      "totalValue": "Total Value",
-      "totalInvestment": "Total Investment",
-      "coinCount": "Coin Count",
-      "differentCryptos": "Different cryptocurrencies",
-      "bestPerformance": "Best Performance",
-      "worstPerformance": "Worst Performance",
-      "addCoinToPortfolio": "Add Coin to Portfolio",
-      "selectCoin": "Select Coin",
-      "searchCoinPlaceholder": "Search coin (e.g: BTC, ETH)",
-      "amount": "Amount",
-      "amountPlaceholder": "Amount you own",
-      "purchasePricePlaceholder": "Your average purchase price",
-      "investmentSummary": "Investment Summary",
-      "fillAllFields": "Please fill all fields",
-      "enterValidNumbers": "Please enter valid numeric values",
-      "positiveNumbers": "Amount and purchase price must be greater than zero",
-      "portfolioCoins": "Portfolio Coins",
-      "addCoin": "Add Coin",
-      "adding": "Adding...",
-      "addCoinsToTrack": "Add your coins to track your portfolio",
-      "addFirstCoin": "Add Your First Coin",
-      "noCoinAdded": "No Coins Added Yet"
-  },
-  "productImage": {
-    "title": "Hero Product Image",
-    "subtitle": "(800x800 px recommended)"
   }
 }
