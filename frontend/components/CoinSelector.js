@@ -37,7 +37,9 @@ export const CoinSelector = ({ selectedCoin, onCoinSelect }) => {
   // Arama terimine göre filtrelenen coinler
   const filteredCoins = useMemo(() => {
     if (!searchTerm.trim()) {
-      return supportedCoins;
+      // Arama yapılmadığında SEI'yi en üste koy ve diğer coinleri göster
+      const otherCoins = supportedCoins.filter(coin => coin !== 'SEI');
+      return ['SEI', ...otherCoins.sort()];
     }
     
     const searchLower = searchTerm.toLowerCase().trim();
@@ -136,11 +138,18 @@ export const CoinSelector = ({ selectedCoin, onCoinSelect }) => {
               className={`p-4 rounded-xl border-2 transition-all duration-200 hover:shadow-lg ${
                 selectedCoin === coin
                   ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
-                  : 'border-slate-300 dark:border-slate-600 bg-white/50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 hover:border-blue-300 dark:hover:border-blue-600'
+                  : coin === 'SEI' && !searchTerm.trim()
+                    ? 'border-yellow-400 bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-900/30 dark:to-amber-900/30 text-yellow-700 dark:text-yellow-300 hover:border-yellow-500 shadow-md'
+                    : 'border-slate-300 dark:border-slate-600 bg-white/50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 hover:border-blue-300 dark:hover:border-blue-600'
               }`}
             >
-              <div className="text-2xl mb-2">💰</div>
+              <div className="text-2xl mb-2">{coin === 'SEI' && !searchTerm.trim() ? '👑' : '💰'}</div>
               <div className="text-sm font-medium">{coin}</div>
+              {coin === 'SEI' && !searchTerm.trim() && (
+                <div className="text-xs text-yellow-600 dark:text-yellow-400 font-semibold mt-1">
+                  Premium
+                </div>
+              )}
             </button>
           ))
         ) : (

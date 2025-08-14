@@ -377,17 +377,12 @@ export default function Home() {
               <div className="bg-white/10 dark:bg-slate-800/10 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-white/20 dark:border-slate-700/20 shadow-2xl">
                 <div className="aspect-square bg-gradient-to-br from-purple-100 to-blue-100 dark:from-slate-700 dark:to-slate-600 rounded-2xl flex items-center justify-center relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20"></div>
-                  <div className="text-center relative z-10">
-                    <div className="text-6xl sm:text-7xl lg:text-9xl mb-4">🧸</div>
-                    <div className="flex justify-center space-x-4 mb-4">
-                      <div className="w-4 h-4 sm:w-6 sm:h-6 bg-green-500 rounded-full animate-pulse shadow-lg"></div>
-                      <div className="w-4 h-4 sm:w-6 sm:h-6 bg-red-500 rounded-full animate-pulse shadow-lg"></div>
-                    </div>
-                    <p className="text-slate-600 dark:text-slate-300 font-bold text-sm sm:text-base lg:text-lg">
-                      {t('homepage.productImage.title')}
-                      <br />
-                      <span className="text-xs sm:text-sm font-normal">{t('homepage.productImage.subtitle')}</span>
-                    </p>
+                  <div className="relative z-10 w-full h-full">
+                    <img 
+                      src="/hero.jpeg" 
+                      alt="PeluPrice Smart Teddy Bear"
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
                   </div>
                 </div>
                 

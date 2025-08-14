@@ -32,14 +32,14 @@ export const config = {
     'LUNC', 'USTC', 'JASMY', 'CVX', 'ROSE', 'RUNE', 'KLAY', 'FLOW', 'EGLD', 'XEC'
   ],
   voiceOptions: [
-    { id: 'voice1', name: 'Emma', gender: 'female', language: 'tr' },
-    { id: 'voice2', name: 'Alex', gender: 'male', language: 'tr' },
-    { id: 'voice3', name: 'Sarah', gender: 'female', language: 'en' },
-    { id: 'voice4', name: 'John', gender: 'male', language: 'en' },
-    { id: 'voice5', name: 'Anna', gender: 'female', language: 'de' },
-    { id: 'voice6', name: 'Klaus', gender: 'male', language: 'de' },
-    { id: 'voice7', name: 'Marie', gender: 'female', language: 'fr' },
-    { id: 'voice8', name: 'Pierre', gender: 'male', language: 'fr' },
+    { id: 'voice1', name: 'Alex', gender: 'male', language: 'tr' },
+    { id: 'voice2', name: 'Emma', gender: 'female', language: 'tr' },
+    // { id: 'voice3', name: 'Sarah', gender: 'female', language: 'en' },
+    // { id: 'voice4', name: 'John', gender: 'male', language: 'en' },
+    // { id: 'voice5', name: 'Anna', gender: 'female', language: 'de' },
+    // { id: 'voice6', name: 'Klaus', gender: 'male', language: 'de' },
+    // { id: 'voice7', name: 'Marie', gender: 'female', language: 'fr' },
+    // { id: 'voice8', name: 'Pierre', gender: 'male', language: 'fr' },
   ]
 };
 
