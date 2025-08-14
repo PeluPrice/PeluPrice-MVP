@@ -4,6 +4,8 @@ export const config = {
   isDemoMode,
   apiUrl: process.env.NEXT_PUBLIC_API_URL || '/api',
   appUrl: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
+  // Demo aktivasyon kodları
+  demoCodes: ['DEMO1', 'DEMO2', 'DEMO3', 'DEMO123', 'DEMO456', 'DEMO789', 'TEST1', 'TEST2', 'TEST3'],
   supportedLanguages: ['tr', 'en', 'de', 'fr'] as const,
   defaultLanguage: 'tr' as const,
   supportedCoins: [

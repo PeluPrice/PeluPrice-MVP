@@ -17,33 +17,104 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Sayfa yüklendiğinde authentication durumunu kontrol et
   useEffect(() => {
-    const checkAuth = async () => {
-      if (isAuthenticated()) {
-        try {
+    const initializeAuth = async () => {
+      try {
+        if (isAuthenticated()) {
           const response = await getCurrentUser();
           setUser(response.data);
-        } catch (error) {
-          console.error('Auth check failed:', error);
-          // Clear invalid tokens
-          await logout();
         }
+      } catch (error) {
+        console.error('Auth initialization failed:', error);
+        // Geçersiz token'ları temizle
+        await logout();
+        setUser(null);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
-    checkAuth();
+    initializeAuth();
   }, []);
 
+  // Storage değişikliklerini dinle (diğer tab'lardan gelen değişiklikler)
+  useEffect(() => {
+    const handleStorageChange = (e) => {
+      if (e.key === 'authTokens' && e.storageArea === localStorage) {
+        if (!e.newValue && user) {
+          // Token silinmiş, kullanıcıyı çıkış yap
+          setUser(null);
+        } else if (e.newValue && !user) {
+          // Yeni token var ama kullanıcı yok, yeniden kontrol et
+          getCurrentUser()
+            .then(response => setUser(response.data))
+            .catch(() => setUser(null));
+        }
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [user]);
+
+  // Visibility change ve focus event'lerini dinle
+  useEffect(() => {
+    const handleVisibilityChange = async () => {
+      if (document.visibilityState === 'visible') {
+        // Sayfa görünür olduğunda authentication durumunu kontrol et
+        if (isAuthenticated() && !user) {
+          try {
+            const response = await getCurrentUser();
+            setUser(response.data);
+          } catch (error) {
+            console.error('Visibility auth check failed:', error);
+            await logout();
+            setUser(null);
+          }
+        } else if (!isAuthenticated() && user) {
+          // Token yoksa kullanıcıyı temizle
+          setUser(null);
+        }
+      }
+    };
+
+    const handleFocus = () => {
+      handleVisibilityChange();
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', handleFocus);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, [user]);
+
   const loginUser = async (credentials) => {
-    const response = await login(credentials);
-    setUser(response.data.user);
-    return response;
+    setLoading(true);
+    try {
+      const response = await login(credentials);
+      setUser(response.data.user);
+      return response;
+    } finally {
+      setLoading(false);
+    }
   };
 
   const logoutUser = async () => {
-    await logout();
-    setUser(null);
+    setLoading(true);
+    try {
+      await logout();
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateUser = (updatedUserData) => {
+    setUser(updatedUserData);
   };
 
   const value = {
@@ -51,7 +122,8 @@ export const AuthProvider = ({ children }) => {
     loading,
     login: loginUser,
     logout: logoutUser,
-    isAuthenticated: !!user,
+    updateUser,
+    isAuthenticated: !!user && !loading,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

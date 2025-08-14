@@ -4,14 +4,15 @@ from datetime import datetime
 from typing import Optional
 from enum import Enum
 
+# Device status enum - matching model enum values
 class DeviceStatus(str, Enum):
-    CREATED = "created"
-    DEPLOYED = "deployed"
-    DELIVERED = "delivered"
-    ACTIVATED = "activated"
-    WORKING = "working"
-    OFFLINE = "offline"
-    ERROR = "error"
+    CREATED = "CREATED"
+    DEPLOYED = "DEPLOYED"
+    DELIVERED = "DELIVERED"
+    ACTIVATED = "ACTIVATED"
+    WORKING = "WORKING"
+    OFFLINE = "OFFLINE"
+    ERROR = "ERROR"
 
 class DeviceBase(BaseModel):
     name: Optional[str] = None

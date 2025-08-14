@@ -6,13 +6,13 @@ from datetime import datetime
 import enum
 
 class DeviceStatus(enum.Enum):
-    CREATED = "created"       # Device created in system, not yet deployed
-    DEPLOYED = "deployed"     # Device physically deployed with card
-    DELIVERED = "delivered"   # Device delivered to end user
-    ACTIVATED = "activated"   # User activated device with key
-    WORKING = "working"       # Device is actively working and connected
-    OFFLINE = "offline"       # Device is offline/disconnected
-    ERROR = "error"          # Device has error status
+    CREATED = "CREATED"       # Device created in system, not yet deployed
+    DEPLOYED = "DEPLOYED"     # Device physically deployed with card
+    DELIVERED = "DELIVERED"   # Device delivered to end user
+    ACTIVATED = "ACTIVATED"   # User activated device with key
+    WORKING = "WORKING"       # Device is actively working and connected
+    OFFLINE = "OFFLINE"       # Device is offline/disconnected
+    ERROR = "ERROR"          # Device has error status
 
 class Device(Base):
     __tablename__ = "devices"

@@ -35,6 +35,9 @@ export interface DeviceSettings {
 export interface AuthTokens {
   accessToken: string;
   refreshToken: string;
+  tokenType?: string;
+  expiresIn?: number;
+  rememberMe?: boolean;
 }
 
 export interface LoginRequest {

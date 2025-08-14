@@ -1,6 +1,6 @@
-# PlushCryptoAlarm - Smart Crypto Alarm System
+# PeluPrice - Smart Crypto Alarm System
 
-PlushCryptoAlarm is a Next.js web application for managing crypto price alarms through smart plush devices. The app supports multiple languages, real-time cryptocurrency tracking, and voice-enabled notifications.
+PeluPrice is a Next.js web application for managing crypto price alarms through smart plush devices. The app supports multiple languages, real-time cryptocurrency tracking, and voice-enabled notifications.
 
 ## Features
 

@@ -17,11 +17,14 @@ export default function DashboardPage() {
   const [error, setError] = useState('');
   const [showActivationForm, setShowActivationForm] = useState(false);
 
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, loading: authLoading } = useAuth();
   const router = useRouter();
   const { t } = useTranslation();
 
   useEffect(() => {
+    // Auth loading bitene kadar bekle
+    if (authLoading) return;
+    
     if (!isAuthenticated) {
       router.push('/auth/login');
       return;
@@ -30,19 +33,23 @@ export default function DashboardPage() {
     const loadDevices = async () => {
       try {
         const response = await getDevices();
-        setDevices(response.data);
+        // API response'ını normalize et
+        const devicesData = response.data || response || [];
+        setDevices(Array.isArray(devicesData) ? devicesData : []);
       } catch (err) {
-        setError(err.message);
+        console.error('Device loading error:', err);
+        setError(err.message || 'Cihazlar yüklenirken hata oluştu');
+        setDevices([]); // Hata durumunda boş array
       } finally {
         setLoading(false);
       }
     };
 
     loadDevices();
-  }, [isAuthenticated, router]);
+  }, [authLoading, isAuthenticated, router]);
 
   const handleDeviceActivated = (newDevice) => {
-    setDevices([...devices, newDevice]);
+    setDevices(prevDevices => [...(prevDevices || []), newDevice]);
   };
 
   const handleDeviceSelect = (deviceId) => {
@@ -50,10 +57,26 @@ export default function DashboardPage() {
   };
 
   const handleDeviceUpdate = (updatedDevice) => {
-    setDevices(devices.map(device => 
-      device.id === updatedDevice.id ? updatedDevice : device
-    ));
+    setDevices(prevDevices => 
+      (prevDevices || []).map(device => 
+        device.id === updatedDevice.id ? updatedDevice : device
+      )
+    );
   };
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
+        <div className="text-center">
+          <div className="relative">
+            <div className="animate-spin rounded-full h-20 w-20 border-4 border-blue-200 dark:border-blue-800"></div>
+            <div className="animate-spin rounded-full h-20 w-20 border-4 border-transparent border-t-blue-600 dark:border-t-blue-400 absolute top-0"></div>
+          </div>
+          <p className="mt-6 text-slate-600 dark:text-slate-300 font-medium">Kimlik doğrulanıyor...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return null;
@@ -89,7 +112,7 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {devices.length === 0 ? (
+        {(devices && Array.isArray(devices) && devices.length === 0) ? (
           // No devices - Show activation form
           <div className="max-w-md mx-auto">
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 p-8 text-center">
@@ -105,14 +128,14 @@ export default function DashboardPage() {
               <ActivationForm onDeviceActivated={handleDeviceActivated} />
             </div>
           </div>
-        ) : devices.length === 1 ? (
+        ) : (devices && Array.isArray(devices) && devices.length === 1) ? (
           // Single device - Show management interface in grid cards
           <div className="w-full max-w-none px-2 sm:px-4 lg:px-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
               <div>
                 <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">{t('navigation.deviceManagement')}</h1>
                 <p className="text-slate-600 dark:text-slate-300 mt-2">
-                  {devices[0].name || `Device ${devices[0].deviceCode}`}
+                  {(devices[0]?.name) || `Device ${devices[0]?.deviceCode || devices[0]?.device_code || 'Unknown'}`}
                 </p>
               </div>
               <button
@@ -135,7 +158,7 @@ export default function DashboardPage() {
               <div>
                 <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">{t('navigation.myPlushies')}</h1>
                 <p className="text-slate-600 dark:text-slate-300 mt-2">
-                  {devices.length} aktif cihaz yönetiliyor
+                  {(devices && devices.length) || 0} aktif cihaz yönetiliyor
                 </p>
               </div>
               <button
@@ -150,13 +173,13 @@ export default function DashboardPage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 lg:gap-6">
-              {devices.map((device) => (
+              {(devices && Array.isArray(devices)) ? devices.map((device) => (
                 <DeviceCard
                   key={device.id}
                   device={device}
                   onSelect={() => handleDeviceSelect(device.id)}
                 />
-              ))}
+              )) : null}
             </div>
           </div>
         )}
