@@ -1,29 +1,52 @@
 
-# Use an official Python runtime as a parent image
-FROM python:3.12-slim
+# Multi-stage build for better caching and smaller image
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
 
-# Install uv
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
-
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the project files
+# Copy dependency files first for better layer caching
 COPY pyproject.toml uv.lock* ./
 
-# Create a virtual environment and install dependencies
-RUN uv venv /opt/venv
-RUN uv pip install -r pyproject.toml --system
+# Install dependencies in the system Python
+RUN uv sync --frozen --no-install-project --no-dev
+
+# Production stage
+FROM python:3.12-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy UV from builder stage
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
+
+# Set the working directory
+WORKDIR /app
+
+# Copy dependencies from builder stage
+COPY --from=builder /app/.venv /app/.venv
 
 # Copy the rest of the application code
 COPY . .
 
 # Set environment variables
-ENV PATH="/opt/venv/bin:$PATH"
+ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONPATH="/app:$PYTHONPATH"
+ENV ENVIRONMENT=production
+
+# Create a non-root user for security
+RUN groupadd -r peluprice && useradd -r -g peluprice peluprice
+RUN chown -R peluprice:peluprice /app
+USER peluprice
 
 # Expose the port
 EXPOSE 8000
 
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
 # Command to run the application
-CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
