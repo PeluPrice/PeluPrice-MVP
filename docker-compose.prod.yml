@@ -1,3 +1,5 @@
+# Production Docker Compose Configuration
+# Use this for production deployments
 
 services:
   backend:
@@ -11,9 +13,10 @@ services:
       - DATABASE_URL=postgresql://peluprice:peluprice123@db:5432/peluprice
       - MQTT_HOST=mqtt
       - MQTT_PORT=1883
-      - SECRET_KEY=your-super-secret-key-change-this-in-production
-      - JWT_SECRET_KEY=your-jwt-secret-key-change-this-in-production
+      - SECRET_KEY=${SECRET_KEY:-change-this-in-production}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-change-this-in-production}
       - ENVIRONMENT=production
+      - API_VERSION=v1
     depends_on:
       db:
         condition: service_healthy
@@ -26,19 +29,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-    
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./frontend:/app
-    env_file:
-      - .env
-    depends_on:
-      - backend
+    networks:
+      - peluprice-network
 
   mqtt:
     image: eclipse-mosquitto:2.0
@@ -51,6 +43,8 @@ services:
       - ./mqtt/data:/mosquitto/data
       - ./mqtt/log:/mosquitto/log
     restart: unless-stopped
+    networks:
+      - peluprice-network
 
   db:
     image: postgres:15
@@ -69,6 +63,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - peluprice-network
 
 volumes:
   postgres_data:
+
+networks:
+  peluprice-network:
+    driver: bridge
