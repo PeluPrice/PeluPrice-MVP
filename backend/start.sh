@@ -8,12 +8,35 @@ echo "Starting PeluPrice Backend in Production..."
 
 # Wait for database to be ready
 echo "Waiting for database connection..."
-while ! pg_isready -h db -p 5432 -U peluprice; do
-    echo "Database not ready, waiting..."
+MAX_RETRIES=60
+RETRY_COUNT=0
+
+while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+    echo "Attempting database connection (attempt $((RETRY_COUNT + 1))/$MAX_RETRIES)..."
+    
+    # Test if PostgreSQL is accepting connections
+    if pg_isready -h db -p 5432 -U peluprice; then
+        echo "PostgreSQL is accepting connections..."
+        
+        # Test actual database connection with authentication
+        if PGPASSWORD=peluprice123 psql -h db -p 5432 -U peluprice -d peluprice -c "SELECT 1;" >/dev/null 2>&1; then
+            echo "Database connection successful!"
+            break
+        else
+            echo "Database accepting connections but authentication failed, retrying..."
+        fi
+    else
+        echo "Database not ready, waiting..."
+    fi
+    
+    RETRY_COUNT=$((RETRY_COUNT + 1))
     sleep 2
 done
 
-echo "Database is ready!"
+if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
+    echo "Failed to connect to database after $MAX_RETRIES attempts"
+    exit 1
+fi
 
 # Wait for MQTT broker to be ready
 echo "Waiting for MQTT broker..."
