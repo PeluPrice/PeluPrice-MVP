@@ -1,5 +1,6 @@
 import os
 from fastapi import FastAPI, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from app.services.get_db import get_db
 
@@ -7,6 +8,22 @@ app = FastAPI(
     title="PeluPrice API",
     description="API for PeluPrice project",
     version=os.getenv("API_VERSION", "v1"),
+)
+
+# CORS middleware configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://pelurprice.webinen.com",
+        "https://peluprice.vercel.app",
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://localhost:8080",
+        "http://localhost",
+    ],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["*"],
 )
 
 @app.get("/health", summary="Health Check", tags=["Health"])
