@@ -5,9 +5,15 @@ from sqlalchemy.exc import OperationalError
 import time
 
 # Add the app directory to the Python path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'backend')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from app.models import Base  # Assuming your models are defined here
+try:
+    from app.models import Base  # Import all models
+    from app.models.user import User  # Ensure user model is loaded
+    from app.models.device import Device  # Ensure device model is loaded
+except ImportError as e:
+    print(f"ERROR: Could not import models: {e}")
+    sys.exit(1)
 
 def get_db_engine():
     """Creates a SQLAlchemy engine with retry logic."""
