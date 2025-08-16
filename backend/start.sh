@@ -6,51 +6,9 @@ set -e
 
 echo "Starting PeluPrice Backend in Production..."
 
-# Wait for database to be ready
-echo "Waiting for database connection..."
-MAX_RETRIES=60
-RETRY_COUNT=0
-
-while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-    echo "Attempting database connection (attempt $((RETRY_COUNT + 1))/$MAX_RETRIES)..."
-    
-    # First check basic network connectivity
-    if nc -z db 5432 2>/dev/null; then
-        echo "Port 5432 is reachable on db host..."
-        
-        # Test if PostgreSQL is accepting connections
-        if pg_isready -h db -p 5432 -U peluprice 2>/dev/null; then
-            echo "PostgreSQL is accepting connections..."
-            
-            # Test actual database connection with authentication
-            if PGPASSWORD=peluprice123 psql -h db -p 5432 -U peluprice -d peluprice -c "SELECT 1;" >/dev/null 2>&1; then
-                echo "Database connection successful!"
-                break
-            else
-                echo "Database accepting connections but authentication failed, retrying..."
-            fi
-        else
-            echo "PostgreSQL not ready for connections, waiting..."
-        fi
-    else
-        echo "db:5432 - no response (network issue or service not ready)"
-        
-        # Try to resolve the hostname
-        if nslookup db >/dev/null 2>&1; then
-            echo "Hostname 'db' resolves correctly"
-        else
-            echo "WARNING: Hostname 'db' cannot be resolved - check Docker network"
-        fi
-    fi
-    
-    RETRY_COUNT=$((RETRY_COUNT + 1))
-    sleep 3
-done
-
-if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
-    echo "Failed to connect to database after $MAX_RETRIES attempts"
-    exit 1
-fi
+# Database readiness is handled by Docker Compose's healthcheck.
+# See docker-compose.prod.yml for details.
+echo "Assuming database is ready..."
 
 # Wait for MQTT broker to be ready
 echo "Waiting for MQTT broker..."
