@@ -2,8 +2,6 @@ import os
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.services.get_db import get_db
-from app.models import Base
-from app.database import engine
 
 app = FastAPI(
     title="PeluPrice API",
@@ -24,6 +22,8 @@ def init_database():
     Initialize database tables. Call this endpoint after deployment.
     """
     try:
+        from app.models import Base
+        from app.database import engine
         Base.metadata.create_all(bind=engine)
         return {"status": "success", "message": "Database tables created successfully"}
     except Exception as e:
