@@ -24,28 +24,38 @@ done
 
 echo "MQTT broker is ready!"
 
-# Run database migrations if needed
-echo "Running database setup..."
+# Run database initialization
+echo "Initializing database..."
 python -c "
+import sys
 import os
-from sqlalchemy import create_engine, text
-from app.models import Base
 
-DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://peluprice:peluprice123@db:5432/peluprice')
-engine = create_engine(DATABASE_URL)
+# Ensure proper Python path
+sys.path.insert(0, '/app')
+sys.path.insert(0, '/app/scripts')
 
 try:
-    # Test connection
-    with engine.connect() as conn:
-        conn.execute(text('SELECT 1'))
-    print('Database connection successful')
-    
-    # Create tables
-    Base.metadata.create_all(bind=engine)
-    print('Database tables created/updated')
+    # Run the init_db script
+    exec(open('/app/scripts/init_db.py').read())
+    print('Database initialization completed successfully')
 except Exception as e:
-    print(f'Database setup error: {e}')
-    exit(1)
+    print(f'Database initialization error: {e}')
+    print('Attempting fallback initialization...')
+    
+    # Fallback to manual initialization
+    try:
+        from app.models import Base
+        from sqlalchemy import create_engine
+        
+        DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://peluprice:peluprice123@db:5432/peluprice')
+        engine = create_engine(DATABASE_URL)
+        
+        # Create tables
+        Base.metadata.create_all(bind=engine)
+        print('Database tables created successfully (fallback)')
+    except Exception as fallback_error:
+        print(f'Fallback initialization also failed: {fallback_error}')
+        exit(1)
 "
 
 echo "Starting FastAPI server..."
