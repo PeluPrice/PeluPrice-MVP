@@ -6,7 +6,7 @@ FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
 WORKDIR /app
 
 # Copy dependency files first for better layer caching
-COPY pyproject.toml uv.lock* ./
+COPY backend/pyproject.toml backend/uv.lock* ./ 
 
 # Install dependencies in the system Python
 RUN uv sync --frozen --no-install-project --no-dev
@@ -31,7 +31,10 @@ WORKDIR /app
 COPY --from=builder /app/.venv /app/.venv
 
 # Copy the rest of the application code
-COPY . .
+COPY backend/ .
+
+# Copy scripts
+COPY scripts/ ./scripts/
 
 # Set environment variables
 ENV PATH="/app/.venv/bin:$PATH"
