@@ -41,8 +41,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONPATH="/app:/app/scripts"
 ENV ENVIRONMENT=production
 
-# Make start.sh executable
-RUN chmod +x start.sh
+
 
 # Create a non-root user for security
 RUN groupadd -r peluprice && useradd -r -g peluprice peluprice
@@ -56,5 +55,5 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
-# Command to run the application using start.sh
-CMD ["./start.sh"]
+# Run the application
+CMD ["sh", "-c", "python scripts/init_db.py && python -m uvicorn main:app --host 0.0.0.0 --port 8000"]
