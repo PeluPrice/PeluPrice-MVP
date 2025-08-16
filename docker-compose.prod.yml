@@ -9,10 +9,12 @@ services:
     container_name: peluprice-backend
     ports:
       - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     env_file:
       - .env.prod
     environment:
-      - DATABASE_URL=postgresql://peluprice:peluprice123@db:5432/peluprice
+      - DATABASE_URL=postgresql://peluprice:peluprice123@host.docker.internal:5432/peluprice
       - MQTT_HOST=mqtt
       - MQTT_PORT=1883
       - ENVIRONMENT=production
