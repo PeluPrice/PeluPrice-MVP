@@ -46,7 +46,7 @@ def create_database():
         
         if device_count == 0:
             print("Creating test devices for demo...")
-            # Insert test devices
+            # Insert test devices - Use proper SQL for PostgreSQL
             test_devices = [
                 {
                     'id': 'test-device-001',
@@ -72,10 +72,18 @@ def create_database():
             ]
             
             for device in test_devices:
-                conn.execute(text("""
-                    INSERT INTO devices (id, activation_key, status, firmware_version, hardware_version, created_at)
-                    VALUES (:id, :activation_key, :status, :firmware_version, :hardware_version, datetime('now'))
-                """), device)
+                if 'postgresql' in database_url:
+                    # PostgreSQL syntax
+                    conn.execute(text("""
+                        INSERT INTO devices (id, activation_key, status, firmware_version, hardware_version, created_at)
+                        VALUES (:id, :activation_key, :status, :firmware_version, :hardware_version, NOW())
+                    """), device)
+                else:
+                    # SQLite syntax  
+                    conn.execute(text("""
+                        INSERT INTO devices (id, activation_key, status, firmware_version, hardware_version, created_at)
+                        VALUES (:id, :activation_key, :status, :firmware_version, :hardware_version, datetime('now'))
+                    """), device)
             
             conn.commit()
             print("✅ Test devices created with activation keys: DEMO123, DEMO456, DEMO789")
