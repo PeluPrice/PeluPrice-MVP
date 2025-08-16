@@ -2,11 +2,6 @@ import os
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.services.get_db import get_db
-from app.models import Base
-from app.database import engine
-
-# Create tables
-Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="PeluPrice API",
@@ -20,6 +15,19 @@ def health_check():
     Health check endpoint to ensure the API is running.
     """
     return {"status": "ok"}
+
+@app.post("/init-db", summary="Initialize Database", tags=["Admin"])
+def init_database():
+    """
+    Initialize database tables. Call this endpoint after deployment.
+    """
+    try:
+        from app.models import Base
+        from app.database import engine
+        Base.metadata.create_all(bind=engine)
+        return {"status": "success", "message": "Database tables created successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Database initialization failed: {str(e)}")
 
 # Include routers
 from app.api import users, devices, auth
