@@ -14,7 +14,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://pelurprice.webinen.com",
+        "https://peluprice.webinen.com",
         "https://peluprice.vercel.app",
         "http://localhost:3000",
         "http://localhost:3001",
