@@ -14,23 +14,37 @@ RETRY_COUNT=0
 while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
     echo "Attempting database connection (attempt $((RETRY_COUNT + 1))/$MAX_RETRIES)..."
     
-    # Test if PostgreSQL is accepting connections
-    if pg_isready -h db -p 5432 -U peluprice; then
-        echo "PostgreSQL is accepting connections..."
+    # First check basic network connectivity
+    if nc -z db 5432 2>/dev/null; then
+        echo "Port 5432 is reachable on db host..."
         
-        # Test actual database connection with authentication
-        if PGPASSWORD=peluprice123 psql -h db -p 5432 -U peluprice -d peluprice -c "SELECT 1;" >/dev/null 2>&1; then
-            echo "Database connection successful!"
-            break
+        # Test if PostgreSQL is accepting connections
+        if pg_isready -h db -p 5432 -U peluprice 2>/dev/null; then
+            echo "PostgreSQL is accepting connections..."
+            
+            # Test actual database connection with authentication
+            if PGPASSWORD=peluprice123 psql -h db -p 5432 -U peluprice -d peluprice -c "SELECT 1;" >/dev/null 2>&1; then
+                echo "Database connection successful!"
+                break
+            else
+                echo "Database accepting connections but authentication failed, retrying..."
+            fi
         else
-            echo "Database accepting connections but authentication failed, retrying..."
+            echo "PostgreSQL not ready for connections, waiting..."
         fi
     else
-        echo "Database not ready, waiting..."
+        echo "db:5432 - no response (network issue or service not ready)"
+        
+        # Try to resolve the hostname
+        if nslookup db >/dev/null 2>&1; then
+            echo "Hostname 'db' resolves correctly"
+        else
+            echo "WARNING: Hostname 'db' cannot be resolved - check Docker network"
+        fi
     fi
     
     RETRY_COUNT=$((RETRY_COUNT + 1))
-    sleep 2
+    sleep 3
 done
 
 if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
