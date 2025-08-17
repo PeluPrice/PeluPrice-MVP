@@ -4,7 +4,7 @@ import { TranslationProvider } from '../../i18n';
 
 export const metadata = {
   title: "PeluPrice - World's Smartest Crypto Plush Toys",
-  description: "Plush toys equipped with patented LED technology track your crypto portfolio 24/7. Green eyes for profit, red eyes for loss! Starting from $299, free shipping worldwide.",
+  description: "Plush toys equipped with patented LED technology track your crypto portfolio 24/7. Green hands for profit, red hands for loss! Starting from $99, free shipping worldwide.",
   keywords: "crypto, bitcoin, ethereum, plush toy, smart toy, crypto alarm, price tracking, LED technology",
   metadataBase: new URL('https://peluprice.com'),
   openGraph: {

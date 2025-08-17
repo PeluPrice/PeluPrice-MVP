@@ -72,7 +72,7 @@ export default function Home() {
           return [
             "1 Adet Akıllı Peluş Oyuncak",
             "5 Kripto Para Takibi",
-            "Temel LED Göz Teknolojisi",
+            "Temel LED  Teknolojisi",
             "Mobil Uygulama Desteği",
             "Email Bildirimleri",
             "6 Ay Garanti"
@@ -175,7 +175,7 @@ export default function Home() {
           return [
             "1 Smart Plush Toy",
             "5 Cryptocurrency Tracking",
-            "Basic LED Eye Technology",
+            "Basic LED Hand Technology",
             "Mobile App Support",
             "Email Notifications",
             "6 Month Warranty"
