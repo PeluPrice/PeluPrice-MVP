@@ -207,8 +207,8 @@
       },
       "list": {
         "led": {
-          "title": "Smart LED Eye Technology",
-          "description": "Patented LED technology makes plush toy eyes reflect real-time price changes",
+          "title": "Smart LED Hand Technology",
+          "description": "Patented LED technology makes plush toy hands reflect real-time price changes",
           "details": "RGB LED + Wi-Fi module"
         },
         "crypto": {
@@ -260,7 +260,7 @@
         "features": [
           "1 Smart Plush Toy",
           "5 Cryptocurrency Tracking",
-          "Basic LED Eye Technology",
+          "Basic LED Hand Technology",
           "Mobile App Support",
           "Email Notifications",
           "6 Month Warranty"

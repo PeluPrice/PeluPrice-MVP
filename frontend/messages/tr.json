@@ -212,8 +212,8 @@
       },
       "list": {
         "led": {
-          "title": "Akıllı LED Göz Teknolojisi",
-          "description": "Patentli LED teknolojisi ile peluş oyuncakların gözleri gerçek zamanlı fiyat değişimlerini yansıtır",
+          "title": "Akıllı LED El Teknolojisi",
+          "description": "Patentli LED teknolojisi ile peluş oyuncakların elleri gerçek zamanlı fiyat değişimlerini yansıtır",
           "details": "RGB LED + Wi-Fi modülü"
         },
         "crypto": {
@@ -265,7 +265,7 @@
         "features": [
           "1 Adet Akıllı Peluş Oyuncak",
           "5 Kripto Para Takibi",
-          "Temel LED Göz Teknolojisi",
+          "Temel LED El Teknolojisi",
           "Mobil Uygulama Desteği",
           "Email Bildirimleri",
           "6 Ay Garanti"

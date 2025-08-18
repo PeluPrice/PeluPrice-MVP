@@ -190,8 +190,8 @@
       },
       "list": {
         "led": {
-          "title": "Smart LED Eye Technology",
-          "description": "Patented LED technology makes plush toy eyes reflect real-time price changes",
+          "title": "Smart LED Hand Technology",
+          "description": "Patented LED technology makes plush toy hands reflect real-time price changes",
           "details": "RGB LED + Wi-Fi module"
         },
         "crypto": {
