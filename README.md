@@ -2,7 +2,7 @@
 
 PeluPrice is a comprehensive IoT device management platform that allows users to activate, monitor, and control smart devices through a web dashboard and mobile app.
 
-[![Watch the video](https://img.youtube.com/vi/UkPb4PXKp7E/0.jpg)]([https://www.youtube.com/watch?v=UkPb4PXKp7E])
+[![Watch the video](https://www.youtube.com/watch?v=UkPb4PXKp7E)
 
 🔗 [Live Demo](https://peluprice.webinen.com)
 
