@@ -45,12 +45,21 @@ PeluPrice is a comprehensive IoT device management platform that allows users to
 - **WebSocket**: Live updates for web dashboard
 - **HTTP APIs**: RESTful APIs for all operations
 
+- ### Trading & Clearing (Yellow SDK)
+- **NitroliteRPC integration:** Connects to Yellow ClearNode over WSS.
+- **EIP-712 Authentication:** Signs a policy with the user’s wallet to start a session.
+- **RFQ / Get Quote:** Sends simple RFQ requests and receives live quotes successfully.
+- **Demo page:** `/yellow-demo` showcases the live stream and logs.
+
 ## 📋 Prerequisites
 
 - Docker & Docker Compose
 - Node.js 18+ (for frontend development)
 - Python 3.9+ with `uv` package manager (for backend development)
 - PlatformIO (for firmware development)
+
+- ### Yellow SDK (Frontend)
+- `@erc7824/nitrolite` (NitroliteRPC helpers)
 
 ### Installing uv
 ```bash
@@ -149,6 +158,11 @@ cd frontend && npm install && cd ..
 | `JWT_SECRET_KEY` | Secret key for JWT tokens | Generate new |
 | `MQTT_HOST` | MQTT broker hostname | `mqtt` |
 | `SMTP_*` | Email configuration | Configure for production |
+| `NEXT_PUBLIC_YELLOW_WS`          | ClearNode WebSocket endpoint (wss://…/ws)     | — |
+| `NEXT_PUBLIC_YELLOW_SUBPROTOCOL` | WS subprotocol (usually `nitrolite-rpc`)      | `nitrolite-rpc` |
+| `NEXT_PUBLIC_YELLOW_APP`         | Yellow Application address (0x…)              | — |
+| `NEXT_PUBLIC_YELLOW_SCOPE`       | Policy scope                                   | `console` |
+| `NEXT_PUBLIC_YELLOW_DOMAIN`      | EIP-712 domain.name                            | `PeluPrice` |
 
 ### MQTT Topics Structure
 ```
